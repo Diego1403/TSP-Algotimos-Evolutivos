@@ -1,45 +1,43 @@
-import threading
+
 import csv
+def read_tsp_file(file_path):
+    tsp_data = {}
 
+    with open(file_path, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if line.startswith('NAME'):
+                tsp_data['NAME'] = line.split(': ')[1]
+            elif line.startswith('TYPE'):
+                tsp_data['TYPE'] = line.split(': ')[1]
+            elif line.startswith('COMMENT'):
+                tsp_data['COMMENT'] = line.split(': ')[1]
+            elif line.startswith('DIMENSION'):
+                tsp_data['DIMENSION'] = int(line.split(': ')[1])
+            elif line.startswith('EDGE_WEIGHT_TYPE'):
+                tsp_data['EDGE_WEIGHT_TYPE'] = line.split(': ')[1]
+            elif line == 'NODE_COORD_SECTION':
+                tsp_data['NODE_COORD_SECTION'] = []
+                for node_line in file:
+                    if node_line.strip() == '' or node_line.startswith('EOF'):
+                       
+                        break
+                    node_data = node_line.split()
+                    node_id = int(node_data[0])
+                    x_coord = float(node_data[1])
+                    y_coord = float(node_data[2])
+                    tsp_data['NODE_COORD_SECTION'].append((node_id, x_coord, y_coord))
 
-def cargar_archivo(dataset):
-    with open(dataset, 'r') as archivo:
-        # Leer el tamaño del problema (n)
-        n = int(archivo.readline().strip())
-
-        # Saltar una línea en blanco
-        archivo.readline()
-
-        # Leer el flujo de productos entre unidades
-        flujo_productos = []
-        for _ in range(n):
-            flujo = list(map(int, archivo.readline().strip().split()))
-            flujo_productos.append(flujo)
-
-        # Saltar una línea en blanco
-        archivo.readline()
-
-        # Leer la matriz de distancias entre localizaciones
-        matriz_distancias = []
-        for _ in range(n):
-            distancias = list(map(int, archivo.readline().strip().split()))
-            matriz_distancias.append(distancias)
-
-        # Devolver los datos cargados
-        return n, flujo_productos, matriz_distancias
-
-# Imprime el problema por pantalla
+    return tsp_data
 
 
 def archivo_save_output(filename, output):
-    file_write_lock = threading.Lock()
-    with file_write_lock:
-        try:
-            with open(filename, 'a', newline='') as file:
-                writer = csv.writer(file)
-                writer.writerow(output)
-        except IOError as e:
-            print(f"Error al guardar el archivo {filename}: {e}")
+    try:
+        with open(filename, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(output)
+    except IOError as e:
+        print(f"Error al guardar el archivo {filename}: {e}")
 
 
 def save_log(filename, text):
