@@ -20,7 +20,33 @@ def seleccion_torneo(poblacion, k, matriz_distancias):
     seleccionados.sort(key=lambda ind: calcular_fitness(ind, matriz_distancias))
     return seleccionados[0]
 
-
+def modified_order_crossover(parent1, parent2):
+    size = len(parent1)
+    
+    # Choose a random crossover point
+    crossover_point = random.randint(0, size - 1)
+    # Create empty children
+    child1 = [None] * size
+    child2 = [None] * size
+    
+    # Copy the right substrings from each parent to the corresponding child
+    child1[crossover_point:] = parent1[crossover_point:]
+    child2[crossover_point:] = parent2[crossover_point:]
+    
+    # Fill the left part of the children
+    
+    for i in range(crossover_point):
+        for city in parent2:
+            if city not in child1:
+                child1[i] = city
+                break
+            
+        for city in parent1:
+            if city not in child2:
+                child2[i] = city
+                break
+    
+    return child1, child2
 
 def cruzar_OX2(padre1, padre2):
     hijo = [-1] * len(padre1)
