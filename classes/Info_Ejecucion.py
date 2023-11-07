@@ -22,10 +22,10 @@ class Info_Ejecucion:
 
         def distancia_euclidea(nodo1, nodo2):
             return math.sqrt((nodo2[1] - nodo1[1]) ** 2 + (nodo2[2] - nodo2[1]) ** 2)
-
         for i in range(self.dimension):
             for j in range(self.dimension):
                 self.matriz_distancias[i][j] = distancia_euclidea(self.nodos[i],self.nodos[j])
+        self.print_matriz_distancias()
         return self.matriz_distancias
                 
     def print_matriz_distancias(self):

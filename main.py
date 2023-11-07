@@ -13,40 +13,20 @@ def inicializar_poblacion(num_individuos, num_ciudades):
     return poblacion
 
 def calcular_fitness(individuo, matriz_distancias):
-    return sum(matriz_distancias[individuo[i], individuo[(i+1) % len(individuo)]] for i in range(len(individuo)))
+    total_distance = 0
+    num_ciudades = len(individuo)
+    for i in range(num_ciudades):
+        current_city = individuo[i]
+        next_city = individuo[(i + 1) % num_ciudades]
+        total_distance += matriz_distancias[current_city, next_city]
+        
+    return total_distance
 
-def seleccion_torneo(poblacion, k, matriz_distancias):
-    seleccionados = random.sample(poblacion, k)
+def seleccion_torneo(poblacion, kBest, matriz_distancias):
+    seleccionados = random.sample(poblacion, kBest)
     seleccionados.sort(key=lambda ind: calcular_fitness(ind, matriz_distancias))
     return seleccionados[0]
-
-def modified_order_crossover(parent1, parent2):
-    size = len(parent1)
-    
-    # Choose a random crossover point
-    crossover_point = random.randint(0, size - 1)
-    # Create empty children
-    child1 = [None] * size
-    child2 = [None] * size
-    
-    # Copy the right substrings from each parent to the corresponding child
-    child1[crossover_point:] = parent1[crossover_point:]
-    child2[crossover_point:] = parent2[crossover_point:]
-    
-    # Fill the left part of the children
-    
-    for i in range(crossover_point):
-        for city in parent2:
-            if city not in child1:
-                child1[i] = city
-                break
-            
-        for city in parent1:
-            if city not in child2:
-                child2[i] = city
-                break
-    
-    return child1, child2
+ 
 
 def cruzar_OX2(padre1, padre2):
     hijo = [-1] * len(padre1)
@@ -66,27 +46,44 @@ def mutar_2opt(individuo):
     individuo[a], individuo[b] = individuo[b], individuo[a]
     return individuo
 
-def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion):
+def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_elites, kBest):
     poblacion = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
-    start_time = time.time()
+    mejor_global = poblacion[0]  # Keep track of the best solution ever found
+    start_time= time.time()
     for _ in range(num_generaciones):
+        #todo : Guardar los elites
+        
         nueva_poblacion = []
-        k = 3
         
         while len(nueva_poblacion) < tam_poblacion:
-            padre1 = seleccion_torneo(poblacion, k, matriz_distancias)
-            padre2 = seleccion_torneo(poblacion, k, matriz_distancias)
-            hijo = cruzar_OX2(padre1, padre2)
-            if random.random() < 0.1:  # Probabilidad de mutación
-                hijo = mutar_2opt(hijo)
-            nueva_poblacion.append(hijo)
-        poblacion = nueva_poblacion
+            padre1 = seleccion_torneo(poblacion, kBest, matriz_distancias)
+            padre2 = seleccion_torneo(poblacion, kBest, matriz_distancias)
+            if random.random() < 0.7:
+                hijo1 = cruzar_OX2(padre1, padre2)
+            
+            # Mutar
+            if random.random() < 0.1:
+                hijo1 = mutar_2opt(hijo1)
+
+            nueva_poblacion.extend(hijo1)
+
+        nueva_poblacion.sort(key=lambda ind: calcular_fitness(ind, matriz_distancias))
+        # Replace worst if needed
+        if calcular_fitness(mejor_global, matriz_distancias) < calcular_fitness(nueva_poblacion[-1], matriz_distancias):
+            nueva_poblacion[-1] = mejor_global
+
+        poblacion = nueva_poblacion[:tam_poblacion]  # Ensure the population size remains constant
         
-        if time.time() - start_time > 60:
+        # Update global best if needed
+        mejor_actual = min(poblacion, key=lambda ind: calcular_fitness(ind, matriz_distancias))
+        if not mejor_global or calcular_fitness(mejor_actual, matriz_distancias) < calcular_fitness(mejor_global, matriz_distancias):
+            mejor_global = mejor_actual
+            
+        if time.time() - start_time > 30:
             print("Tiempo límite alcanzado, terminando evolución.")
-            return poblacion
+            return mejor_global
         
-        
+
     return poblacion
 
 if __name__ == "__main__":
@@ -106,10 +103,9 @@ if __name__ == "__main__":
     IE.calcular_matriz_distancias()
     
 
-    poblacion = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50)
+    mejor_solucion = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50,IE.E,IE.kBest)
     
     # Encontrar la mejor solución
-    mejor_solucion = min(poblacion, key=lambda individuo: calcular_fitness(individuo, IE.matriz_distancias))
     mejor_distancia = calcular_fitness(mejor_solucion, IE.matriz_distancias)
     
     print("Mejor solución encontrada:", mejor_solucion)
