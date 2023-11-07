@@ -1,6 +1,7 @@
 import configparser
 import math
 import numpy as np
+import random
 
 class Info_Ejecucion:
     def __init__(self,nombre_lugar,tipo , comentario,dimension,ewt) :
@@ -53,6 +54,7 @@ class Info_Ejecucion:
             self.kWorst = config.getint('default', 'kWorst')
             self.evaluaciones = config.getint('default', 'evaluaciones')
             self.semilla = config.getint('default', 'semilla')
+            self.aleatorio = random.Random(self.semilla)
             
             print("config.ini loaded correctly")
         except (configparser.NoOptionError, ValueError) as e:

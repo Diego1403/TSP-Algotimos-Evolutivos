@@ -4,6 +4,30 @@ import numpy as np
 from controladores.C_Archivos import archivo_save_output, read_tsp_file
 from classes.Info_Ejecucion import  Info_Ejecucion
 
+def grasp(gen_aleatorio,matriz_distancias,tam_problema):
+    
+    lista_mejores = np.zeros(tam_problema)
+    completo = False
+
+    while not completo:
+        
+        m = gen_aleatorio.randrange(0,tam_problema)
+        while lista_mejores[m] != 0:
+            m = gen_aleatorio.randrange(0,tam_problema)
+    
+        mejores = sorted(matriz_distancias[m]) #lista de las mejores
+        mejor = mejores[gen_aleatorio.randrange(0,4)]
+        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
+
+        completo = True
+
+        for l in lista_mejores:
+            if  l == 0:
+                completo = False
+
+    return lista_mejores
+
+
 def inicializar_poblacion(num_individuos, num_ciudades):
     poblacion = []
     for _ in range(num_individuos):
@@ -109,9 +133,9 @@ def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_eli
 
 if __name__ == "__main__":
     #cargamos informacion 
-    tsp_data = read_tsp_file("input_data/ch130.tsp")
+    tsp_data = read_tsp_file("input_data/ch130.tsp") 
     IE = Info_Ejecucion(tsp_data.get('NAME'),tsp_data.get('TYPE'),tsp_data.get('COMMENT'),tsp_data.get('DIMENSION'), tsp_data.get('EDGE_WEIGHT_TYPE'))
-    
+
     #coger nodos
     for nodo in tsp_data.get('NODE_COORD_SECTION', []):
        IE.add_nodo(nodo) # el nodo guarda su (numero,latitud,longitud)
@@ -122,7 +146,8 @@ if __name__ == "__main__":
     IE.load_configuration("config.ini")
     print(IE.evaluaciones)
     IE.calcular_matriz_distancias()
-    
+
+    print(grasp(IE.aleatorio,IE.matriz_distancias,IE.dimension))   
 
     mejor_solucion = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50,IE.E,IE.kBest)
     
