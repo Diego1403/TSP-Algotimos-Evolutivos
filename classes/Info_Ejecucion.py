@@ -1,6 +1,7 @@
 import configparser
 import math
 import numpy as np
+import random
 
 class Info_Ejecucion:
     def __init__(self,nombre_lugar,tipo , comentario,dimension,ewt) :
@@ -25,7 +26,7 @@ class Info_Ejecucion:
         for i in range(self.dimension):
             for j in range(self.dimension):
                 self.matriz_distancias[i][j] = distancia_euclidea(self.nodos[i],self.nodos[j])
-        self.print_matriz_distancias()
+        #self.print_matriz_distancias()
         return self.matriz_distancias
                 
     def print_matriz_distancias(self):
@@ -51,6 +52,7 @@ class Info_Ejecucion:
             self.kWorst = config.getint('default', 'kWorst')
             self.evaluaciones = config.getint('default', 'evaluaciones')
             self.semilla = config.getint('default', 'semilla')
+            self.aleatorio = random.Random(self.semilla)
             
             print("config.ini loaded correctly")
         except (configparser.NoOptionError, ValueError) as e:
