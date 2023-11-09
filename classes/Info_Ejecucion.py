@@ -3,6 +3,8 @@ import math
 import numpy as np
 import random
 
+from controladores.C_Archivos import archivo_save_output
+
 class Info_Ejecucion:
     def __init__(self,nombre_lugar,tipo , comentario,dimension,ewt) :
         self.nombre_lugar = nombre_lugar
@@ -33,7 +35,7 @@ class Info_Ejecucion:
                 
     def print_matriz_distancias(self):
         for row in self.matriz_distancias:
-            print (row)
+            archivo_save_output("test.csv", row)
     
     def load_configuration(self,file_path):
         # Initialize the parser

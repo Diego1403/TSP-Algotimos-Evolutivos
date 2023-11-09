@@ -1,33 +1,11 @@
 import random
 import time
-import numpy as np
-from controladores.C_Archivos import archivo_save_output, read_tsp_file
-from classes.Info_Ejecucion import  Info_Ejecucion
 
-def grasp(gen_aleatorio,matriz_distancias,tam_problema):
-    
-    lista_mejores = np.zeros(tam_problema)
-    completo = False
+# Suponemos que Info_Ejecucion y read_tsp_file están definidos en los módulos dados
+from classes.Info_Ejecucion import Info_Ejecucion
+from controladores.C_Archivos import read_tsp_file
 
-    while not completo:
-        
-        m = gen_aleatorio.randrange(0,tam_problema)
-        while lista_mejores[m] != 0:
-            m = gen_aleatorio.randrange(0,tam_problema)
-    
-        mejores = sorted(matriz_distancias[m]) #lista de las mejores
-        mejor = mejores[gen_aleatorio.randrange(0,4)]
-        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
-
-        completo = True
-
-        for l in lista_mejores:
-            if  l == 0:
-                completo = False
-
-    return lista_mejores
-
-
+# Función para inicializar una población de recorridos
 def inicializar_poblacion(num_individuos, num_ciudades):
     poblacion = []
     for _ in range(num_individuos):
@@ -36,124 +14,99 @@ def inicializar_poblacion(num_individuos, num_ciudades):
         poblacion.append(individuo)
     return poblacion
 
+# Función para calcular la aptitud (fitness) de un individuo (la distancia total del recorrido)
 def calcular_fitness(individuo, matriz_distancias):
-    total_distance = 0
-    num_ciudades = len(individuo)
-    for i in range(num_ciudades-1):
-        current_city = individuo[i]
-        next_city = individuo[(i + 1)]
-        total_distance += matriz_distancias[current_city, next_city]
-    return total_distance
+    return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
-def seleccion_torneo(poblacion, kBest, matriz_distancias):
-    seleccionados = []
-    poblacion.sort(key=lambda ind: calcular_fitness(ind, matriz_distancias))
-    for i in range(0,kBest):
-        seleccionados.append( poblacion[i])
-    return seleccionados[random.randint(0, kBest)]
+# Función para realizar la selección de torneo binario en la población
+def seleccion_torneo_binario(poblacion):
+    padre1 = min(random.sample(poblacion, 2), key=lambda x: x[1])
+    padre2 = min(random.sample(poblacion, 2), key=lambda x: x[1])
+    return padre1[0], padre2[0]
 
-def cruzar_MOC():    
-    pass
- 
+# Función para realizar el cruzamiento OX2 entre dos padres para producir dos descendientes
+def cruzamiento_OX2(padre1, padre2):
+    size = min(len(padre1), len(padre2))
+    hijo1, hijo2 = [-1]*size, [-1]*size
+    indices = sorted(random.sample(range(size), 2))
+    set1, set2 = set(padre1[indices[0]:indices[1]]), set(padre2[indices[0]:indices[1]])
 
-def cruzar_OX2(padre1, padre2):
-    hijo = [-1] * len(padre1)
-    start, end = sorted(random.sample(range(len(padre1)), 2))
-    hijo[start:end] = padre1[start:end]
-    pos = end
-    for gene in padre2:
-        if gene not in hijo:
-            if pos >= len(hijo):
-                pos = 0
-            hijo[pos] = gene
-            pos += 1
-    return hijo
+    hijo1[indices[0]:indices[1]], hijo2[indices[0]:indices[1]] = padre1[indices[0]:indices[1]], padre2[indices[0]:indices[1]]
+    
+    pos1, pos2 = indices[1], indices[1]
+    for i in range(size):
+        if padre2[(i+indices[1])%size] not in set1:
+            hijo1[pos1%size] = padre2[(i+indices[1])%size]
+            pos1 += 1
+        if padre1[(i+indices[1])%size] not in set2:
+            hijo2[pos2%size] = padre1[(i+indices[1])%size]
+            pos2 += 1
 
+    return hijo1, hijo2
+
+# Función para mutación usando el algoritmo 2-opt
 def mutar_2opt(individuo):
-    a, b = random.sample(range(len(individuo)), 2)
-    individuo[a], individuo[b] = individuo[b], individuo[a]
+    size = len(individuo)
+    a, b = random.sample(range(size), 2)
+    if a > b:
+        a, b = b, a
+    individuo[a:b] = reversed(individuo[a:b])
     return individuo
 
+# Función principal que ejecuta el algoritmo genético
 def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_elites, kBest):
-    poblacion = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
-    nueva_poblacion = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
-    mejor_solucion = poblacion[0]  # Keep track of the best solution ever found
-    mejor_coste = 
-    start_time= time.time()
-    Elites = []
-    nueva_poblacion.sort(key=lambda ind: calcular_fitness(ind, matriz_distancias))
-    for i in range(0,n_elites):
-            Elites.append(nueva_poblacion[i])
-            
-    for _ in range(num_generaciones):
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    best_solution = None
+    best_distance = float('inf')
+    done = False
+    start_time = time.time()  # Guardamos el tiempo inicial
 
- 
-        while len(nueva_poblacion) < tam_poblacion:
-            padre1 = seleccion_torneo(poblacion, kBest, matriz_distancias)
-            padre2 = seleccion_torneo(poblacion, kBest, matriz_distancias)
-            hijo1 = padre1
-            
-            
-            if random.random() < 0.7:
-                hijo1 = cruzar_OX2(padre1, padre2)
-                
-            # Mutar
-            
-            if random.random() < 0.1:
-                hijo1 = mutar_2opt(hijo1)
-            fitness_hijo = calcular_fitness(hijo1,matriz_distancias)    
-            for i in range(0,Elites):
-                #buscamos del final de la lista para atras y remplezamos el primero que mejora
-                    if (fitness_hijo<calcular_fitness(individuo=Elites[i],matriz_distancias=matriz_distancias)):
-                        Elites[i] = hijo1
-                        padre1 = hijo1
-                        
-                        break
-                        
-            nueva_poblacion.extend(hijo1)
+    while not done:
+        # Calculamos la aptitud de cada individuo de la población
+        fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in population]
+        # Ordenamos la población basada en la aptitud (mejor a peor)
+        population_sorted = sorted(fitness_population, key=lambda x: x[1])
+        # Conservamos a los individuos élite
+        elites = population_sorted[:n_elites]
+        new_population = [ind[0] for ind in elites]
 
-        
-        
-        
-        nueva_poblacion = nueva_poblacion[:tam_poblacion]  
-        
-       
-        mejor_actual = min(poblacion, key=lambda ind: calcular_fitness(ind, matriz_distancias))
-        
-        
-        if not calcular_fitness(mejor_actual, matriz_distancias) < calcular_fitness(mejor_global, matriz_distancias):
-            mejor_solucion = mejor_actual
-        
-        if time.time() - start_time > 30:
-            print("Tiempo límite alcanzado, terminando evolución.")
-            return mejor_solucion
-        
+        while len(new_population) < tam_poblacion:
+            padre1, padre2 = seleccion_torneo_binario(population_sorted)
+            hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
+            hijo1 = mutar_2opt(hijo1)
+            hijo2 = mutar_2opt(hijo2)
+            new_population.extend([hijo1, hijo2])
 
-    return mejor_solucion
+        population = new_population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
+
+        current_best_solution, current_best_distance = population_sorted[0]
+        print(best_distance)
+        if current_best_distance < best_distance:
+            best_solution = current_best_solution
+            best_distance = current_best_distance
+
+        # Condición de terminación basada en el tiempo de ejecución
+        if time.time() - start_time    > 30:
+            done = True  # Terminamos si la ejecución supera los 30 segundos
+    return best_solution,best_distance
 
 if __name__ == "__main__":
-    #cargamos informacion 
+    # Cargar los datos del TSP y preparar la información de ejecución
     tsp_data = read_tsp_file("input_data/ch130.tsp") 
-    IE = Info_Ejecucion(tsp_data.get('NAME'),tsp_data.get('TYPE'),tsp_data.get('COMMENT'),tsp_data.get('DIMENSION'), tsp_data.get('EDGE_WEIGHT_TYPE'))
+    IE = Info_Ejecucion(tsp_data.get('NAME'), tsp_data.get('TYPE'), tsp_data.get('COMMENT'), tsp_data.get('DIMENSION'), tsp_data.get('EDGE_WEIGHT_TYPE'))
 
-    #coger nodos
+    # Cargar nodos
     for nodo in tsp_data.get('NODE_COORD_SECTION', []):
-       IE.add_nodo(nodo) # el nodo guarda su (numero,latitud,longitud)
-                         # esto no usa la clase nodo (no hace falta)
-    
-    #matriz distancias
-    
+        IE.add_nodo(nodo)
+
+    # Cargar configuración y calcular la matriz de distancias
     IE.load_configuration("config.ini")
-    print(IE.evaluaciones)
     IE.calcular_matriz_distancias()
 
-    print(grasp(IE.aleatorio,IE.matriz_distancias,IE.dimension))   
-
-    mejor_solucion = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50,IE.E,IE.kBest)
+    # Ejecutar el algoritmo genético
+    mejor_solucion,mejor_distancia = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50, IE.E, IE.kBest)
     
-    # Encontrar la mejor solución
-    mejor_distancia = calcular_fitness(mejor_solucion, IE.matriz_distancias)
     
+    # Imprimir la mejor solución y su distancia
     print("Mejor solución encontrada:", mejor_solucion)
     print("Distancia de la mejor solución:", mejor_distancia)
-
