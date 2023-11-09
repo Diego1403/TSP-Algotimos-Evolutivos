@@ -19,9 +19,9 @@ def calcular_fitness(individuo, matriz_distancias):
     return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 # Función para realizar la selección de torneo binario en la población
-def seleccion_torneo_binario(poblacion):
-    padre1 = min(random.sample(poblacion, 2), key=lambda x: x[1])
-    padre2 = min(random.sample(poblacion, 2), key=lambda x: x[1])
+def seleccion_torneo_binario(poblacion,kbest):
+    padre1 = min(random.sample(poblacion, kbest), key=lambda x: x[1])
+    padre2 = min(random.sample(poblacion, kbest), key=lambda x: x[1])
     return padre1[0], padre2[0]
 
 # Función para realizar el cruzamiento OX2 entre dos padres para producir dos descendientes
@@ -69,20 +69,27 @@ def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_eli
         # Conservamos a los individuos élite
         elites = population_sorted[:n_elites]
         new_population = [ind[0] for ind in elites]
-
-        padre1, padre2 = seleccion_torneo_binario(population_sorted)
-        hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
-        hijo1 = mutar_2opt(hijo1)
-        hijo2 = mutar_2opt(hijo2)
-        new_population.extend([hijo1, hijo2])
-
-        population = new_population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
-
+        #-----------SELECCIONAR---------------
+        padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest)
+        #-----------RECOMBINAR---------------
+        if random.random() < 0.7:
+            hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
+        #-----------MUTAR---------------
+        if random.random() < 0.1:        
+            hijo1 = mutar_2opt(hijo1)
+            hijo2 = mutar_2opt(hijo2)
+        #-----------EVALUAR---------------   
         current_best_solution, current_best_distance = population_sorted[0]
         print(best_distance)
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
+            
+        #-----------REMPLAZAR---------------   
+        new_population.extend([hijo1, hijo2])
+        population = new_population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
+
+
 
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time    > 30:
