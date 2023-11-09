@@ -70,12 +70,11 @@ def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_eli
         elites = population_sorted[:n_elites]
         new_population = [ind[0] for ind in elites]
 
-        while len(new_population) < tam_poblacion:
-            padre1, padre2 = seleccion_torneo_binario(population_sorted)
-            hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
-            hijo1 = mutar_2opt(hijo1)
-            hijo2 = mutar_2opt(hijo2)
-            new_population.extend([hijo1, hijo2])
+        padre1, padre2 = seleccion_torneo_binario(population_sorted)
+        hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
+        hijo1 = mutar_2opt(hijo1)
+        hijo2 = mutar_2opt(hijo2)
+        new_population.extend([hijo1, hijo2])
 
         population = new_population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
 
