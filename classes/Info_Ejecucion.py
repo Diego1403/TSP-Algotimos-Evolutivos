@@ -57,8 +57,11 @@ class Info_Ejecucion:
             self.evaluaciones = config.getint('default', 'evaluaciones')
             self.semilla = config.getint('default', 'semilla')
             self.aleatorio = random.Random(self.semilla)
-            
+            self.prob_cruce = config.getfloat('default', 'prob_cruce')
+            self.prob_mutacion = config.getfloat('default', 'prob_mutacion')
+
             print("config.ini loaded correctly")
         except (configparser.NoOptionError, ValueError) as e:
             print(f"An error occurred: {e}")
+            
             return None

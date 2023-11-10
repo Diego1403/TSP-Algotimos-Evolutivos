@@ -54,12 +54,21 @@ def mutar_2opt(individuo):
     return individuo
 
 # Función principal que ejecuta el algoritmo genético
-def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_elites, kBest):
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+def algoritmo_genetico(IE):
+    matriz_distancias=IE.matriz_distancias
+    evaluaciones = IE.evaluaciones
+    tam_poblacion=IE.tam_poblacion
+    n_elites = IE.E
+    kBest = IE.kBest
     best_solution = None
     best_distance = float('inf')
     done = False
+    ciclo = 0
     start_time = time.time()  # Guardamos el tiempo inicial
+    
+    
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+
 
     while not done:
         # Calculamos la aptitud de cada individuo de la población
@@ -69,18 +78,22 @@ def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_eli
         # Conservamos a los individuos élite
         elites = population_sorted[:n_elites]
         new_population = [ind[0] for ind in elites]
+        
         #-----------SELECCIONAR---------------
         padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest)
         #-----------RECOMBINAR---------------
-        if random.random() < 0.7:
+        hijo1=padre1
+        hijo2=padre2
+        if random.random() < IE.prob_cruce:
             hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
         #-----------MUTAR---------------
-        if random.random() < 0.1:        
+        if random.random() < IE.prob_mutacion:        
             hijo1 = mutar_2opt(hijo1)
             hijo2 = mutar_2opt(hijo2)
         #-----------EVALUAR---------------   
         current_best_solution, current_best_distance = population_sorted[0]
-        print(best_distance)
+        
+        print(current_best_distance)
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
@@ -90,9 +103,9 @@ def algoritmo_genetico(matriz_distancias, num_generaciones, tam_poblacion, n_eli
         population = new_population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
 
 
-
+        ciclo += 1
         # Condición de terminación basada en el tiempo de ejecución
-        if time.time() - start_time    > 30:
+        if time.time() - start_time    > 30 or ciclo>IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
     return best_solution,best_distance
 
@@ -107,10 +120,11 @@ if __name__ == "__main__":
 
     # Cargar configuración y calcular la matriz de distancias
     IE.load_configuration("config.ini")
+    
     IE.calcular_matriz_distancias()
 
     # Ejecutar el algoritmo genético
-    mejor_solucion,mejor_distancia = algoritmo_genetico(IE.matriz_distancias, IE.evaluaciones, 50, IE.E, IE.kBest)
+    mejor_solucion,mejor_distancia = algoritmo_genetico(IE)
     
     
     # Imprimir la mejor solución y su distancia
