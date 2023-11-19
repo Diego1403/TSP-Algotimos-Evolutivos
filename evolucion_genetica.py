@@ -28,7 +28,6 @@ def algoritmo_genetico(IE):
         elites = poblacion[:n_elites]
         # Evaluación de la nueva población
         for e in elites:
-            if e[0] not in nueva_poblacion:
                 nueva_poblacion.append(e[0])
         
         #-----------SELECCIONAR---------------
