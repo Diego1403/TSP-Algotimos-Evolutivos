@@ -3,17 +3,28 @@ import math
 import numpy as np
 import random
 
-from controladores.C_Archivos import archivo_save_output
+from controladores.C_Archivos import archivo_save_output, read_tsp_file
 
 class Info_Ejecucion:
-    def __init__(self,nombre_lugar,tipo , comentario,dimension,ewt) :
-        self.nombre_lugar = nombre_lugar
-        self.tipo = tipo
-        self.comentario = comentario
-        self.dimension = dimension
-        self.ewt = ewt
+    def __init__(self,file_path) :
+        self.load_configuration("config.ini")
+        tsp_data = read_tsp_file("input_data/"+file_path) 
+        
+        self.nombre_lugar = tsp_data.get('NAME')
+        self.tipo = tsp_data.get('TYPE')
+        self.comentario = tsp_data.get('COMMENT')
+        self.dimension = tsp_data.get('DIMENSION')
+        self.ewt = tsp_data.get('EDGE_WEIGHT_TYPE')
         self.nodos = []
         self.matriz_distancias = []
+        self.file_path = file_path
+        # Cargar nodos
+        for nodo in tsp_data.get('NODE_COORD_SECTION', []):
+            self.add_nodo(nodo)
+            
+
+        self.calcular_matriz_distancias()
+
     
     def add_nodo(self,nodo):
         self.nodos.append(nodo)
@@ -57,6 +68,9 @@ class Info_Ejecucion:
             self.evaluaciones = config.getint('default', 'evaluaciones')
             self.semilla = config.getint('default', 'semilla')
             self.aleatorio = random.Random(self.semilla)
+            self.prob_cruce = config.getfloat('default', 'prob_cruce')
+            self.prob_mutacion = config.getfloat('default', 'prob_mutacion')
+            
             
             print("config.ini loaded correctly")
         except (configparser.NoOptionError, ValueError) as e:
