@@ -1,51 +1,84 @@
 
+# Función principal que ejecuta el algoritmo genético
 import time
+from cruzamiento_moc import cruzamiento_MOC
 from cruzamiento_ox2 import cruzamiento_OX2
 from recombinacion_ternaria import recombinacion_ternaria
 from util import calcular_fitness, inicializar_poblacion, mutar_2opt, seleccion_torneo_binario
 
+
 def evolucion_diferencial(IE):
-    matriz_distancias, tam_poblacion, kBest = IE.matriz_distancias, 50, IE.kBest
+    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
     random = IE.aleatorio
     population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
     best_solution = None
     best_distance = float('inf')
     done = False
-    
     start_time = time.time()  # Guardamos el tiempo inicial
     ciclo = 0
+    fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in population]
+    # Ordenamos la población basada en la mejor (mejor a peor)
+    poblacion = sorted(fitness_population, key=lambda x: x[1])
+    #for p in poblacion:
+    #    print(p[1])
+       
     while not done:
-        # Calculamos la aptitud de cada individuo de la población
-        fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in population]
-        # Ordenamos la población basada en la aptitud (mejor a peor)
-        #esta guardado como coste, individuo
-        population_sorted = sorted(fitness_population, key=lambda x: x[1])
-        padre = seleccion_torneo_binario(population_sorted,kBest)[0]
-        aleatorio1 = random.shuffle(padre) 
-        aleatorio2 = random.shuffle(padre) 
-        objetivo = []
-        #-----------SELECCIONAR---------------
-        padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest)
-        #-----------RECOMBINAR---------------
-        if random.random() < IE.prob_cruce:
-            hijo1, hijo2 = recombinacion_ternaria(padre1, padre2)
-        
-        #-----------MUTAR---------------
-        if random.random() < IE.prob_mutacion:   
-            hijo1 = mutar_2opt(hijo1)
-            hijo2 = mutar_2opt(hijo2)
-        #-----------EVALUAR---------------   
-        current_best_solution, current_best_distance = population_sorted[0]
 
+        nueva_poblacion = []
+        # Conservamos a los individuos élite
+        elites = poblacion[:n_elites]
+        # Evaluación de la nueva población
+        for e in elites:
+                nueva_poblacion.append(e[0])
+        
+        #-----------SELECCIONAR---------------
+        
+        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest)
+        
+        posible_objetivo1 = []
+        
+        posible_objetivo2 = []
+        # Seleccionando dos cromosomas distintos diferentes del padre
+        while posible_objetivo1 != posible_objetivo2 and posible_objetivo1 != padre1 :
+            posible_objetivo1 = random.sample(poblacion,1)
+            posible_objetivo2 = random.sample(poblacion,1)
+            
+        if (posible_objetivo1[1] < posible_objetivo2[2]) :
+            objetivo = posible_objetivo1
+        else :
+            objetivo = posible_objetivo2
+    
+
+        aleatorio1 = random.sample(poblacion,1)
+
+        # Seleccionando otro cromosoma aleatorio diferente de los previamente seleccionados
+        aleatorio2 = random.sample(poblacion,1)
+        while aleatorio1 == aleatorio2:
+            aleatorio2 = random.sample(poblacion,1)
+
+
+        hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2)
+
+            
+        #-----------EVALUAR---------------   
+
+        current_best_solution, current_best_distance = elites[0]
+        
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
-        #-----------REMPLAZAR---------------   
-        population.extend([hijo1, hijo2])
-        population = population[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
+        
 
+        #-----------REMPLAZAR---------------
+        if(hijo[1]<padre1[1]):
+              for i in range(len(poblacion)):
+                  if(poblacion[i][1]==padre1[1]):
+                      poblacion[i]=hijo
+                      
+
+        
         ciclo = ciclo +1
-        if ciclo % 1000 == 0:
+        if ciclo % 100 == 0:
             print(best_distance)
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time    > 30 or ciclo>= IE.evaluaciones:

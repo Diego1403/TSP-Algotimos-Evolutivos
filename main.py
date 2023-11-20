@@ -10,9 +10,8 @@ from util import *
 
 
 if __name__ == "__main__":
-
+    
     IE = Info_Ejecucion("ch130.tsp")
-
     mejor_solucion,mejor_distancia = algoritmo_genetico(IE)
     
     #mejor_solucion,mejor_distancia = evolucion_diferencial(IE)
