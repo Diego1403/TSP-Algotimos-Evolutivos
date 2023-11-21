@@ -7,7 +7,7 @@ import numpy as np
 from classes.Info_Ejecucion import Info_Ejecucion
 from controladores.C_Archivos import read_tsp_file
 
-def grasp(gen_aleatorio,matriz_distancias,tam_problema):
+def grasp(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
 
     lista_mejores = np.zeros(tam_problema)
     completo = False
@@ -28,6 +28,8 @@ def grasp(gen_aleatorio,matriz_distancias,tam_problema):
             if  l == 0:
                 completo = False
 
+    lista_sol = lista_mejores[:tam_lista]
+
     return lista_mejores
 
 # Función para inicializar una población de recorridos
@@ -39,35 +41,30 @@ def inicializar_poblacion(num_individuos, num_ciudades):
         poblacion.append(individuo)
     return poblacion
 
-
-
-
-
 # Función para calcular la aptitud (fitness) de un individuo (la distancia total del recorrido)
 def calcular_fitness(individuo, matriz_distancias):
     return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 # Función para realizar la selección de torneo binario en la población
-def seleccion_torneo_binario(poblacion,kbest):
-    sample1 = random.sample(poblacion, kbest)
-    sample2 = random.sample(poblacion, kbest)
+def seleccion_torneo_binario(poblacion,kbest,aleatorio):
+    sample1 = aleatorio.sample(poblacion, kbest)
+    sample2 = aleatorio.sample(poblacion, kbest)
     padre1 = min(sample1, key=lambda x: x[1])[0]
     padre2 = min(sample2, key=lambda x: x[1])[0]
     return padre1, padre2
 
-def get_kworst(poblacion,kworst):
-    sample1 = random.sample(poblacion, kworst)
-    sample2 = random.sample(poblacion, kworst)
+def get_kworst(poblacion,kworst,aleatorio):
+    sample1 = aleatorio.sample(poblacion, kworst)
+    sample2 = aleatorio.sample(poblacion, kworst)
     padre1 = max(sample1, key=lambda x: x[1])[0]
     padre2 = max(sample2, key=lambda x: x[1])[0]
     return padre1, padre2
 
 # Función para realizar el cruzamiento OX2 entre dos padres para producir dos descendientes
-import random
 
-def cruzamiento_OX2(padre1, padre2):
-    punto_cruce1 = random.randint(0, len(padre1) - 1)
-    punto_cruce2 = random.randint(punto_cruce1 + 1, len(padre1))
+def cruzamiento_OX2(padre1, padre2,aleatorio):
+    punto_cruce1 = aleatorio.randint(0, len(padre1) - 1)
+    punto_cruce2 = aleatorio.randint(punto_cruce1 + 1, len(padre1))
 
     hijo1 = [None] * len(padre1)
 
@@ -82,17 +79,17 @@ def cruzamiento_OX2(padre1, padre2):
                     hijo1[i] = gen
                     break
                     
-    punto_cruce1 = random.randint(0, len(padre1) - 1)
-    punto_cruce2 = random.randint(punto_cruce1 + 1, len(padre1))
+    punto_cruce1 = aleatorio.randint(0, len(padre1) - 1)
+    punto_cruce2 = aleatorio.randint(punto_cruce1 + 1, len(padre1))
 
     hijo2 = hijo1
     hijo2.reverse()
     return hijo1, hijo2
 
 # Función para mutación usando el algoritmo 2-opt
-def mutar_2opt(individuo):
+def mutar_2opt(individuo,aleatorio):
     size = len(individuo)
-    a, b = random.sample(range(size), 2)
+    a, b = aleatorio.sample(range(size), 2)
     individuo[a:b] = reversed(individuo[a:b])
     return individuo
 
@@ -103,14 +100,17 @@ def algoritmo_genetico(IE):
     tam_poblacion=IE.tam_poblacion
     n_elites = IE.E
     kBest = IE.kBest
+    aleatorio = IE.aleatorio
+    prob_cruce = IE.prob_cruce
+    prob_mutacion = IE.prob_mutacion
     best_solution = None
     best_distance = float('inf')
     done = False
     ciclo = 0
     start_time = time.time()  # Guardamos el tiempo inicial
     
-    #grasp(IE.aleatorio,IE.matriz_distancias,IE.dimension)
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    population = inicializar_poblacion(tam_poblacion-5, len(matriz_distancias))
+    poulation.append(grasp(aleatorio,matriz_distancias,len(matriz_distancias),5))
 
 
     while not done:
@@ -126,14 +126,14 @@ def algoritmo_genetico(IE):
         padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest)
         #-----------RECOMBINAR---------------
 
-        if random.random() < IE.prob_cruce:  
+        if aleatorio.random() < prob_cruce:  
             hijo1, hijo2 = cruzamiento_OX2(padre1, padre2)
         else :
             hijo1=padre1
             hijo2=padre2
         #-----------MUTAR---------------
-        if random.random() < IE.prob_mutacion:        
-            hijo1 = mutar_2opt(hijo1)
+        if aleatorio.random() < prob_mutacion:        
+            hijo1 = mutar_2opt(hijo1,aleatorio)
             
         #-----------EVALUAR---------------   
         current_best_solution, current_best_distance = population_sorted[0]
@@ -157,6 +157,69 @@ def algoritmo_genetico(IE):
         if time.time() - start_time    > 60 or ciclo>evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
     return best_solution,best_distance
+
+
+def recombinacion_ternaria(padre,aleatorio_1,aleatorio_2):
+
+    return
+
+#TODO: HACER ESTO EN CONDICIONES
+
+def algoritmo_diferencial_evolutivo(IE):
+    matriz_distancias=IE.matriz_distancias
+    evaluaciones = IE.evaluaciones
+    tam_poblacion=IE.tam_poblacion
+    n_elites = IE.E
+    kBest = IE.kBest
+    aleatorio = IE.aleatorio
+    prob_cruce = IE.prob_cruce
+    prob_mutacion = IE.prob_mutacion
+    best_solution = None
+    best_distance = float('inf')
+    done = False
+    ciclo = 0
+    start_time = time.time()  # Guardamos el tiempo inicial
+    
+    population = inicializar_poblacion(tam_poblacion-5, len(matriz_distancias))
+    poulation.append(grasp(aleatorio,matriz_distancias,len(matriz_distancias),5))
+
+    while not done:
+
+        #-----------SELECCIONAR---------------
+        for i in range(tam_poblacion):
+
+            padre1 = matriz_distancias[i] #elegir padre1 de forma secuencial
+
+            #elegir otros dos padres de forma aleatoria
+            padre2 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+            padre3 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+
+            objetivo = seleccion_torneo_binario(population_sorted,kBest) #nodo objetivo con kbest 2
+
+            #elegir aleatorios otra vez si no son distintos
+            while not (padre1!=padre2!=padre3!=objetivo):
+                padre2 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+                padre3 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+            
+        #-----------RECOMBINAR---------------
+
+            #recorrer todos los genes de cada individuo
+            for genes in n_genes
+                if (aleatorio.random>prob_cruce):
+                    final = recombinacion_ternaria(padre1,padre2,padre3)
+            
+        #-----------EVALUAR + REEMPLAZAR---------------
+
+        #si el recombinado mejora al padre lo reemplaza
+        if distancia_final > distancia_objetivo:
+            padre1 = final
+
+        ciclo += 1
+        # Condición de terminación basada en el tiempo de ejecución
+        if time.time() - start_time    > 60 or ciclo>evaluaciones:
+            done = True  # Terminamos si la ejecución supera los 30 segundos
+    return best_solution,best_distance
+
 
 if __name__ == "__main__":
     # Cargar los datos del TSP y preparar la información de ejecución
