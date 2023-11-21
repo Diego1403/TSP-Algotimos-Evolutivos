@@ -93,6 +93,7 @@ def mutar_2opt(individuo,aleatorio):
     individuo[a:b] = reversed(individuo[a:b])
     return individuo
 
+#TODO: cruce MOC y arreglar cosas
 # Función principal que ejecuta el algoritmo genético
 def algoritmo_genetico(IE):
     matriz_distancias=IE.matriz_distancias
@@ -123,7 +124,7 @@ def algoritmo_genetico(IE):
         new_population = [ind[0] for ind in elites]
         
         #-----------SELECCIONAR---------------
-        padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest)
+        padre1, padre2 = seleccion_torneo_binario(population_sorted,kBest,aleatorio)
         #-----------RECOMBINAR---------------
 
         if aleatorio.random() < prob_cruce:  
@@ -164,8 +165,8 @@ def recombinacion_ternaria(padre,aleatorio_1,aleatorio_2):
     return
 
 #TODO: HACER ESTO EN CONDICIONES
-
-def algoritmo_diferencial_evolutivo(IE):
+#mode es el modo para elegir entre 'A' y 'B'
+def algoritmo_diferencial_evolutivo(IE, mode):
     matriz_distancias=IE.matriz_distancias
     evaluaciones = IE.evaluaciones
     tam_poblacion=IE.tam_poblacion
@@ -190,16 +191,29 @@ def algoritmo_diferencial_evolutivo(IE):
 
             padre1 = matriz_distancias[i] #elegir padre1 de forma secuencial
 
-            #elegir otros dos padres de forma aleatoria
-            padre2 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
-            padre3 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+            if(mode = 'A'):
 
-            objetivo = seleccion_torneo_binario(population_sorted,kBest) #nodo objetivo con kbest 2
-
-            #elegir aleatorios otra vez si no son distintos
-            while not (padre1!=padre2!=padre3!=objetivo):
+                #elegir otros dos padres de forma aleatoria
                 padre2 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
                 padre3 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+                
+                #nodo objetivo con kbest 2
+                objetivo = seleccion_torneo_binario(population_sorted,2,aleatorio) 
+
+                #elegir otra vez si no son distintos
+                while not (padre1!=padre2!=padre3!=objetivo):
+                    objetivo = seleccion_torneo_binario(population_sorted,2,aleatorio) 
+                    padre2 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+                    padre3 = matriz_distancias[aleatorio.randrange(0,tam_poblacion)]
+            
+            if(mode = 'B'):
+
+                #elegir los tres por torneo con kbest 3
+                padre2, padre3, objetivo = seleccion_torneo_binario(population_sorted,3,aleatorio)
+                
+                #elegir otra vez si no son distintos
+                while not (padre1!=padre2!=padre3!=objetivo):
+                    padre2, padre3, objetivo = seleccion_torneo_binario(population_sorted,3,aleatorio)
             
         #-----------RECOMBINAR---------------
 
