@@ -4,10 +4,11 @@ import numpy as np
 # Suponemos que Info_Ejecucion y read_tsp_file están definidos en los módulos dados
 from configparser import ConfigParser
 from classes.Info_Ejecucion import Info_Ejecucion
-from colonia_hormigas import colonia_hormigas
-from evolucion_diferencial import evolucion_diferencial
-from evolucion_genetica import algoritmo_genetico
-from util import *
+#from colonia_hormigas import colonia_hormigas
+#from algoritmos.evolucion_diferencial import evolucion_diferencial
+from algoritmos.evolucion_genetica_moc import algoritmo_genetico_moc
+from algoritmos.evolucion_genetica_ox2 import algoritmo_genetico_ox2
+from algoritmos.util import *
 
 
 import configparser
@@ -57,7 +58,16 @@ def main():
                             data["E"] = e
                             data["kBest"] = kbest
                             IE.update_data(data)
-                            mejor_solucion,mejor_distancia = algoritmo_genetico(IE)
+                            mejor_solucion,mejor_distancia = algoritmo_genetico_ox2(IE)
+            if algoritmo == "GenMOC":
+                for e in n_elites:
+                    for kbest in kBest:
+                        for tam_poblacion in n_individuos:
+                            data["tam_poblacion"] = tam_poblacion
+                            data["E"] = e
+                            data["kBest"] = kbest
+                            IE.update_data(data)
+                            mejor_solucion,mejor_distancia = algoritmo_genetico_moc(IE)
                 
             if algoritmo == "EDA":                
                 for tam_poblacion in n_individuos:

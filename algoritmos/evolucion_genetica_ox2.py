@@ -1,15 +1,41 @@
 
 # Función principal que ejecuta el algoritmo genético
 import time
+import numpy as np
 from cruzamiento_moc import cruzamiento_MOC
 from cruzamiento_ox2 import cruzamiento_OX2
 from util import calcular_fitness, inicializar_poblacion, mutar_2opt, seleccion_torneo_binario
 
+def grasp(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
 
-def algoritmo_genetico(IE):
+    lista_mejores = np.zeros(tam_problema)
+    completo = False
+
+    while not completo:
+
+        m = gen_aleatorio.randrange(0,tam_problema)
+        while lista_mejores[m] != 0:
+            m = gen_aleatorio.randrange(0,tam_problema)
+
+        mejores = sorted(matriz_distancias[m]) #lista de las mejores
+        mejor = mejores[gen_aleatorio.randrange(0,4)]
+        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
+
+        completo = True
+
+        for l in lista_mejores:
+            if  l == 0:
+                completo = False
+
+    lista_sol = lista_mejores[:tam_lista]
+
+    return lista_sol
+
+def algoritmo_genetico_ox2(IE):
     matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
     random = IE.aleatorio
     population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    #poblacion debe inicializarse con greedy aleatorizado???
     best_solution = None
     best_distance = float('inf')
     done = False
