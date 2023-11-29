@@ -1,0 +1,9 @@
+{
+  "python.analysis.extraPaths": [
+    "./algoritmos/util",
+    "./algoritmos/util",
+    "./algoritmos/cruzamiento",
+    "./algoritmos/recombinacion",
+    "./algoritmos"
+  ]
+}
