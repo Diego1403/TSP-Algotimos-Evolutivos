@@ -1,12 +1,12 @@
 
 
 # Función para realizar el cruzamiento OX2 entre dos padres para producir dos descendientes
-def cruzamiento_OX2(padre1, padre2,random):
+def cruzamiento_OX2(padre1, padre2,aleatiorio):
     size = min(len(padre1), len(padre2))
     hijo1, hijo2 = [-1]*size, [-1]*size
-    indices = sorted(random.sample(range(size), 2))
+    indices = sorted(aleatiorio.sample(range(size), 2))
     set1, set2 = set(padre1[indices[0]:indices[1]]), set(padre2[indices[0]:indices[1]])
-
+    
     hijo1[indices[0]:indices[1]], hijo2[indices[0]:indices[1]] = padre1[indices[0]:indices[1]], padre2[indices[0]:indices[1]]
     
     pos1, pos2 = indices[1], indices[1]

@@ -1,8 +1,8 @@
 
 
-def cruzamiento_MOC(s1, s2,random):
+def cruzamiento_MOC(s1, s2,aleatiorio):
     # Determine the crossover point
-    crossover_point = random.randint(1, len(s1) - 2)
+    crossover_point = aleatiorio.randint(1, len(s1) - 2)
 
     # Select the right substrings from the crossover point
     right_s1 = s1[crossover_point:]

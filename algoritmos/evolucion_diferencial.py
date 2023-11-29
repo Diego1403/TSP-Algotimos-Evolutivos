@@ -26,10 +26,6 @@ def evolucion_diferencial(IE):
 
         nueva_poblacion = []
         # Conservamos a los individuos élite
-        elites = poblacion[:n_elites]
-        # Evaluación de la nueva población
-        for e in elites:
-                nueva_poblacion.append(e[0])
         
         #-----------SELECCIONAR---------------
         
@@ -47,40 +43,32 @@ def evolucion_diferencial(IE):
             objetivo = posible_objetivo1
         else :
             objetivo = posible_objetivo2
-    
-
+            
         aleatorio1 = random.sample(poblacion,1)
 
         # Seleccionando otro cromosoma aleatorio diferente de los previamente seleccionados
         aleatorio2 = random.sample(poblacion,1)
         while aleatorio1 == aleatorio2:
             aleatorio2 = random.sample(poblacion,1)
-
+        objetivo = seleccion_torneo_binario(poblacion,kBest)[0]
 
         hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2)
-
-            
+                    
         #-----------EVALUAR---------------   
-
-        current_best_solution, current_best_distance = elites[0]
         
-        if current_best_distance < best_distance:
-            best_solution = current_best_solution
-            best_distance = current_best_distance
         
-
+        
         #-----------REMPLAZAR---------------
         if(hijo[1]<padre1[1]):
-              for i in range(len(poblacion)):
-                  if(poblacion[i][1]==padre1[1]):
-                      poblacion[i]=hijo
-                      
+            nueva_poblacion.append(hijo)
+        else:
+            nueva_poblacion.append(padre1)
 
-        
         ciclo = ciclo +1
         if ciclo % 100 == 0:
             print(best_distance)
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time    > 30 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
+        
     return best_solution,best_distance

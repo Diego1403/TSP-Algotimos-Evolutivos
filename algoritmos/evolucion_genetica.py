@@ -34,18 +34,17 @@ def algoritmo_genetico(IE):
         
         padre1, padre2 = seleccion_torneo_binario(poblacion,kBest)
         #-----------RECOMBINAR---------------
+ 
+        if random.random() < IE.prob_cruce:
+            hijo1, hijo2 = cruzamiento_OX2(padre1, padre2, IE.aleatorio)
+        else:
+            hijo1, hijo2 = padre1,padre2
+    #-----------MUTAR---------------
+        if random.random() < IE.prob_mutacion:        
+            hijo1 = mutar_2opt(hijo1)
+            hijo2 = mutar_2opt(hijo2)
+        nueva_poblacion.extend([hijo1, hijo2])
         
-        while len(nueva_poblacion) < tam_poblacion:
-            if random.random() < IE.prob_cruce:
-                hijo1, hijo2 = cruzamiento_OX2(padre1, padre2, IE.aleatorio)
-            else:
-                hijo1, hijo2 = padre1,padre2
-        #-----------MUTAR---------------
-            if random.random() < IE.prob_mutacion:        
-                hijo1 = mutar_2opt(hijo1)
-                hijo2 = mutar_2opt(hijo2)
-            nueva_poblacion.extend([hijo1, hijo2])
-            
         #-----------EVALUAR---------------   
         current_best_solution, current_best_distance = elites[0]
         if current_best_distance < best_distance:
