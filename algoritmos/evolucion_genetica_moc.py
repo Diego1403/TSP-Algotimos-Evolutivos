@@ -8,11 +8,33 @@ from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
 from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
 from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_perdedores
-def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
+def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distancias):
     poblacion = []
-    for _ in range(num_individuos):
+
+    #GENERACION ALEATORIA
+    for _ in range(round(num_individuos*0.8)):
         individuo = list(range(num_ciudades))
-        aleatiorio.shuffle(individuo)
+        aleatorio.shuffle(individuo)
+        poblacion.append(individuo)
+
+    #GENERACION CON GREEEDY ALEATORIZADO
+    for _ in range(round(num_individuos*0.2)):
+        individuo = list(range(num_ciudades))
+        pool = list(range(num_ciudades))
+        for i in range(len(individuo)):
+            if(len(pool)>5):
+                sample = aleatorio.sample(pool,5)
+            else:
+                sample = pool
+                aleatorio.shuffle(sample)
+            mejor_coste = 999999
+            mejor = -1
+            for s in sample:
+                if(matriz_distancias[i][s]<mejor_coste):
+                    mejor_coste = matriz_distancias[i][s]
+                    mejor = s        
+            individuo[i] = mejor
+            pool.remove(mejor)
         poblacion.append(individuo)
     return poblacion
 def calcular_fitness(individuo, matriz_distancias):
@@ -21,7 +43,7 @@ def calcular_fitness(individuo, matriz_distancias):
 def algoritmo_genetico_moc(IE):
     matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest, IE.kWorst
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random,matriz_distancias)
     best_solution = None
     best_distance = float('inf')
     done = False

@@ -1,36 +1,28 @@
 import numpy as np
 
-def greedy_aleatorizado(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
-
-    lista_mejores = np.zeros(tam_problema)
-    completo = False
-
-    while not completo:
-
-        m = gen_aleatorio.randrange(0,tam_problema)
-        while lista_mejores[m] != 0:
-            m = gen_aleatorio.randrange(0,tam_problema)
-
-        mejores = sorted(matriz_distancias[m]) #lista de las mejores
-        mejor = mejores[gen_aleatorio.randrange(0,4)]
-        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
-
-        completo = True
-
-        for l in lista_mejores:
-            if  l == 0:
-                completo = False
-
-    lista_sol = lista_mejores[:tam_lista]
-    print(lista_sol)
-
-    return lista_sol
-
-def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
+def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distancias):
     poblacion = []
-    for _ in range((num_individuos)):
+
+    #GENERACION ALEATORIA
+    for _ in range(round(num_individuos*0.8)):
         individuo = list(range(num_ciudades))
-        aleatiorio.shuffle(individuo)
+        aleatorio.shuffle(individuo)
         poblacion.append(individuo)
+
+    #GENERACION CON GREEEDY ALEATORIZADO
+    for _ in range(round(num_individuos*0.2)):
+        individuo = np.zeros(num_ciudades)
+        pool = list(range(num_ciudades))
+        for i in range(individuo):
+            sample = aleatorio.sample(pool,5)
+            mejor_coste = 999999
+            for s in sample:
+                if(matriz_distancias[i][s]>mejor_coste):
+                    mejor_coste = matriz_distancias[i][s]
+                    mejor = s        
+            individuo[i] = mejor
+            pool.remove(mejor)
+        poblacion.append(individuo)
+
     return poblacion
 
