@@ -1,9 +1,11 @@
 
 # Función principal que ejecuta el algoritmo genético
 import time
-from cruzamiento_moc import cruzamiento_MOC
-from cruzamiento_ox2 import cruzamiento_OX2
-from util import calcular_fitness, inicializar_poblacion, mutar_2opt, seleccion_torneo_binario
+from algoritmos.cruzamiento.cruzamiento_moc import cruzamiento_MOC
+from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
+from algoritmos.util import calcular_fitness, inicializar_poblacion
+from algoritmos.mutacion.mutar_2opt import mutar_2opt
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
 
 
 def algoritmo_genetico_moc(IE):

@@ -5,13 +5,24 @@ from algoritmos.cruzamiento.cruzamiento_moc import cruzamiento_MOC
 from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 from algoritmos.recombinacion.recombinacion_ternaria import recombinacion_ternaria
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
-from algoritmos.util import calcular_fitness, inicializar_poblacion, seleccion_torneo_binario
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
+
+def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
+    poblacion = []
+    for _ in range(num_individuos):
+        individuo = list(range(num_ciudades))
+        aleatiorio.shuffle(individuo)
+        poblacion.append(individuo)
+    return poblacion
+
+def calcular_fitness(individuo, matriz_distancias):
+    return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 
 def evolucion_diferencial(IE):
     matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
     best_solution = None
     best_distance = float('inf')
     done = False
@@ -30,7 +41,7 @@ def evolucion_diferencial(IE):
         
         #-----------SELECCIONAR---------------
         
-        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest)
+        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest,random)
         
         posible_objetivo1 = []
         
@@ -40,10 +51,6 @@ def evolucion_diferencial(IE):
             posible_objetivo1 = random.sample(poblacion,1)
             posible_objetivo2 = random.sample(poblacion,1)
             
-        if (posible_objetivo1[1] < posible_objetivo2[2]) :
-            objetivo = posible_objetivo1
-        else :
-            objetivo = posible_objetivo2
             
         aleatorio1 = random.sample(poblacion,1)
 
