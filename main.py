@@ -46,10 +46,10 @@ def main():
                             mejor_solucion , mejor_distancia = algoritmo_genetico_ox2(IE);
                             pass
                         elif algoritmo == "GenMOC":
-                            # ... (similar structure to your original code)
+                            mejor_solucion , mejor_distancia = algoritmo_genetico_moc(IE);
                             pass
                         elif algoritmo == "EDA":
-                            # ... (adapted for EDA specifics)
+                            mejor_solucion , mejor_distancia = evolucion_diferencial(IE);
                             pass
                         elif algoritmo == "EDB":
                             # ... (adapted for EDB specifics)

@@ -2,6 +2,7 @@ import configparser
 import math
 import numpy as np
 import random
+import logging 
 
 from controladores.C_Archivos import archivo_save_output, read_tsp_file
 
@@ -13,6 +14,7 @@ class Info_Ejecucion:
         self.aleatorio = random.Random(self.semilla)
         self.prob_cruce = prob_cruce
         self.prob_mutacion = prob_mutacion
+
         
     
     def update_data(self,file_path,data) :
@@ -22,7 +24,14 @@ class Info_Ejecucion:
         self.E = data["E"]
         self.kBest= data["kBest"]
         self.tipo_diferencial = data["tipo_diferencial"]
-        
+        logging.basicConfig(filename=self.algoritmo+self.dataset+".log", 
+        format='%(asctime)s %(message)s', 
+		filemode='w') 
+        self.logger=logging.getLogger() 
+        self.logger.setLevel(logging.DEBUG) 
+    
+    def log(self,msg):
+        self.logger.info(msg) 
 
     def update_dataset(self,file_path):
         tsp_data = read_tsp_file("input_data/"+file_path) 
