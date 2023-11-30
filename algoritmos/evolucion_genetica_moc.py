@@ -53,9 +53,12 @@ def algoritmo_genetico_moc(IE):
         
 
         #-----------REMPLAZAR---------------
-        for p in poblacion:
-            if p[0] not in nueva_poblacion  :  
-                nueva_poblacion.append(p[0])
+        #utilizar Kworst para reemplazar el peor en caso de que el mejor de los élites no estén
+        for e in elites:
+            if e[0] not in nueva_poblacion:
+                peor = seleccion_torneo_perdedores(nueva_poblacion, kWorst, IE.aleatorio)
+                poblacion = nueva_poblacion_sorted.remove(peor)
+
         # Calculamos la aptitud de cada individuo de la población
         fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in nueva_poblacion]
         # Ordenamos la población basada en la mejor (mejor a peor)

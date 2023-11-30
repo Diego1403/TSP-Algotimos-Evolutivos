@@ -6,33 +6,8 @@ from cruzamiento_moc import cruzamiento_MOC
 from cruzamiento_ox2 import cruzamiento_OX2
 from util import calcular_fitness, inicializar_poblacion, mutar_2opt, seleccion_torneo_binario
 
-def grasp(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
-
-    lista_mejores = np.zeros(tam_problema)
-    completo = False
-
-    while not completo:
-
-        m = gen_aleatorio.randrange(0,tam_problema)
-        while lista_mejores[m] != 0:
-            m = gen_aleatorio.randrange(0,tam_problema)
-
-        mejores = sorted(matriz_distancias[m]) #lista de las mejores
-        mejor = mejores[gen_aleatorio.randrange(0,4)]
-        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
-
-        completo = True
-
-        for l in lista_mejores:
-            if  l == 0:
-                completo = False
-
-    lista_sol = lista_mejores[:tam_lista]
-
-    return lista_sol
-
 def algoritmo_genetico_ox2(IE):
-    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
+    matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, 50, IE.E, IE.kBest, IE.Kworst
     random = IE.aleatorio
     population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
     #poblacion debe inicializarse con greedy aleatorizado???
@@ -79,9 +54,13 @@ def algoritmo_genetico_ox2(IE):
         
 
         #-----------REMPLAZAR---------------
-        for p in poblacion:
-            if p[0] not in nueva_poblacion  :  
-                nueva_poblacion.append(p[0])
+        
+        #utilizar Kworst para reemplazar el peor en caso de que el mejor de los élites no estén
+        for e in elites:
+            if e[0] not in nueva_poblacion:
+                peor = seleccion_torneo_perdedores(nueva_poblacion, kWorst, IE.aleatorio)
+                poblacion = nueva_poblacion_sorted.remove(peor)
+
         # Calculamos la aptitud de cada individuo de la población
         fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in nueva_poblacion]
         # Ordenamos la población basada en la mejor (mejor a peor)
@@ -89,6 +68,8 @@ def algoritmo_genetico_ox2(IE):
         
         nueva_poblacion_sorted = sorted(fitness_population, key=lambda x: x[1])         
         poblacion = nueva_poblacion_sorted[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
+
+        # Nos aseguramos de no exceder el tamaño de población
         
         ciclo = ciclo +1
         if ciclo % 100 == 0:
