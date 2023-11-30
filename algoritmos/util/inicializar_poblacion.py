@@ -22,12 +22,13 @@ def greedy_aleatorizado(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
                 completo = False
 
     lista_sol = lista_mejores[:tam_lista]
+    print(lista_sol)
 
     return lista_sol
 
 def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
     poblacion = []
-    for _ in range(num_individuos):
+    for _ in range((num_individuos)):
         individuo = list(range(num_ciudades))
         aleatiorio.shuffle(individuo)
         poblacion.append(individuo)

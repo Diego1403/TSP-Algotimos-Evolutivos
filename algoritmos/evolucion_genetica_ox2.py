@@ -8,6 +8,7 @@ from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
 from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_perdedores
 def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
     poblacion = []
     for _ in range(num_individuos):
@@ -19,7 +20,7 @@ def calcular_fitness(individuo, matriz_distancias):
     return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 def algoritmo_genetico_ox2(IE):
-    matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, 50, IE.E, IE.kBest, IE.Kworst
+    matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest, IE.kWorst
     random = IE.aleatorio
     population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
     #poblacion debe inicializarse con greedy aleatorizado???
