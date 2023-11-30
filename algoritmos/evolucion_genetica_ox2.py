@@ -1,15 +1,27 @@
 
 # Función principal que ejecuta el algoritmo genético
 import time
+
 import numpy as np
-from cruzamiento_moc import cruzamiento_MOC
-from cruzamiento_ox2 import cruzamiento_OX2
-from util import calcular_fitness, inicializar_poblacion, mutar_2opt, seleccion_torneo_binario
+from algoritmos.cruzamiento.cruzamiento_moc import cruzamiento_MOC
+from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
+
+from algoritmos.mutacion.mutar_2opt import mutar_2opt
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
+def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
+    poblacion = []
+    for _ in range(num_individuos):
+        individuo = list(range(num_ciudades))
+        aleatiorio.shuffle(individuo)
+        poblacion.append(individuo)
+    return poblacion
+def calcular_fitness(individuo, matriz_distancias):
+    return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 def algoritmo_genetico_ox2(IE):
     matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, 50, IE.E, IE.kBest, IE.Kworst
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
     #poblacion debe inicializarse con greedy aleatorizado???
     best_solution = None
     best_distance = float('inf')
@@ -33,7 +45,7 @@ def algoritmo_genetico_ox2(IE):
                 nueva_poblacion.append(e[0])
         #-----------SELECCIONAR---------------
         
-        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest)
+        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest, IE.aleatorio)
         #-----------RECOMBINAR---------------
  
         if random.random() < IE.prob_cruce:
@@ -42,8 +54,8 @@ def algoritmo_genetico_ox2(IE):
             hijo1, hijo2 = padre1,padre2
     #-----------MUTAR---------------
         if random.random() < IE.prob_mutacion:        
-            hijo1 = mutar_2opt(hijo1)
-            hijo2 = mutar_2opt(hijo2)
+            hijo1 = mutar_2opt(IE.aleatorio,hijo1)
+            hijo2 = mutar_2opt( IE.aleatorio,hijo2)
         nueva_poblacion.extend([hijo1, hijo2])
         
         #-----------EVALUAR---------------   

@@ -1,5 +1,7 @@
 import random
 
+from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
+
 def recombinacion_ternaria(padre, obj, a1, a2):
     nuevo_padre=padre.copy()
     pos1 = random.randint(0, len(padre) - 2) #nos aseguramos que la posicion no es el ultimo elemento
