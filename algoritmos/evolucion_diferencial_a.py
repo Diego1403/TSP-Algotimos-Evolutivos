@@ -42,9 +42,9 @@ def calcular_fitness(individuo, matriz_distancias):
 
 
 def evolucion_diferencial_a(IE):
-    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
+    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random,matriz_distancias)
     best_solution = None
     best_distance = float('inf')
     done = False
@@ -59,36 +59,37 @@ def evolucion_diferencial_a(IE):
        
     while not done:
 
-        nueva_poblacion = []
-        # Conservamos a los individuos élite
-        
-        #-----------SELECCIONAR---------------
+        for i in range(tam_poblacion):
 
-        aleatorio1 = random.sample(poblacion,1)[0]
-        aleatorio2 = random.sample(poblacion,1)[0]
-        while aleatorio1 == aleatorio2:
-            aleatorio2 = random.sample(poblacion,1)[0]
-        objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
+            padre1 = poblacion[i][0] #elegir padre1 de forma secuencial
+            #elegir otros dos padres de forma aleatoria
+            padre2 = random.sample(poblacion,1)[0]
+            padre3 = random.sample(poblacion,1)[0]
+                
+            #nodo objetivo con kbest 2
+            objetivo = seleccion_torneo_binario(poblacion,2,random)[0] 
+
+            #elegir otra vez si no son distintos
+            while not (padre1!=padre2!=padre3!=objetivo):
+                padre2 = random.sample(poblacion,1)[0]
+                padre3 = random.sample(poblacion,1)[0]
+                objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
+
+             #------- RECOMBINAR--------------
+            hijo = recombinacion_ternaria(padre1, objetivo, padre2, padre3,IE.matriz_distancias)
         
-        #------- RECOMBINAR--------------
-        hijo = recombinacion_ternaria(padre, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
+            #-----------EVALUAR---------------   
+            if (hijo[1]<best_distance):
+                best_distance = hijo[1]
+                best_solution= hijo[0] 
         
-        #-----------EVALUAR---------------   
-        if (hijo[1]<best_distance):
-            best_distance = hijo[1]
-            best_solution= hijo[0] 
-        
-        #-----------REMPLAZAR---------------
-        if(hijo[1]<padre[1]):
-            nueva_poblacion.append(hijo)
-            padre = hijo.copy() 
-            
-        else:
-            nueva_poblacion.append(padre)
+            #-----------REMPLAZAR---------------
+            if(hijo[1]<padre1[1]):
+                poblacion[i] = hijo
 
         ciclo = ciclo +1
         if ciclo % 100 == 0:
-            print(best_distance)
+            IE.log(str(best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time    > 30 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
