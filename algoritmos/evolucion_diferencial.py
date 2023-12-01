@@ -33,6 +33,7 @@ def evolucion_diferencial(IE):
     poblacion = sorted(fitness_population, key=lambda x: x[1])
     #for p in poblacion:
     #    print(p[1])
+    padre = seleccion_torneo_binario(poblacion,kBest,random)[0]
        
     while not done:
 
@@ -40,27 +41,26 @@ def evolucion_diferencial(IE):
         # Conservamos a los individuos élite
         
         #-----------SELECCIONAR---------------
-        
-        padre1 = seleccion_torneo_binario(poblacion,kBest,random)[0]
-        
+
         aleatorio1 = random.sample(poblacion,1)[0]
         aleatorio2 = random.sample(poblacion,1)[0]
         while aleatorio1 == aleatorio2:
             aleatorio2 = random.sample(poblacion,1)[0]
         objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
-        #------- RECOMBINAR--------------
-        hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
-        #-----------EVALUAR---------------   
         
+        #------- RECOMBINAR--------------
+        hijo = recombinacion_ternaria(padre, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
+        
+        #-----------EVALUAR---------------   
         if (hijo[1]<best_distance):
             best_distance = hijo[1]
             best_solution= hijo[0] 
         
         #-----------REMPLAZAR---------------
-        if(hijo[1]<padre1[1]):
+        if(hijo[1]<padre[1]):
             nueva_poblacion.append(hijo)
         else:
-            nueva_poblacion.append(padre1)
+            nueva_poblacion.append(padre)
 
         ciclo = ciclo +1
         if ciclo % 100 == 0:
