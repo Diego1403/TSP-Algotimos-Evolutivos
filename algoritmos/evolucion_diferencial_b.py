@@ -76,14 +76,17 @@ def evolucion_diferencial_b(IE):
 
         for i in range(tam_poblacion):
             padre1 = poblacion[i][0]
-            padre2 = seleccion_torneo_binario(poblacion,kBest,random)[0]
-            padre3 = seleccion_torneo_binario(poblacion,kBest,random)[0]
+            #elegir otros dos padres de forma aleatoria
+            padre2 = seleccion_torneo_binario(poblacion,2,random) 
+            padre3 =seleccion_torneo_binario(poblacion,2,random)
+                
+            #nodo objetivo con kbest 2
             objetivo = seleccion_torneo_binario(poblacion,2,random)[0] 
 
             #elegir otra vez si no son distintos
             while not (padre1!=padre2!=padre3!=objetivo):
-                padre2 = seleccion_torneo_binario(poblacion,kBest,random)[0]
-                padre3 = seleccion_torneo_binario(poblacion,kBest,random)[0]
+                padre2 = seleccion_torneo_binario(poblacion,2,random) 
+                padre3 = seleccion_torneo_binario(poblacion,2,random) 
                 objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
 
              #------- RECOMBINAR--------------
