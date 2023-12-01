@@ -2,7 +2,8 @@ import configparser
 from classes.Info_Ejecucion import Info_Ejecucion
 from algoritmos.evolucion_genetica_moc import algoritmo_genetico_moc
 from algoritmos.evolucion_genetica_ox2 import algoritmo_genetico_ox2
-from algoritmos.evolucion_diferencial import evolucion_diferencial
+from algoritmos.evolucion_diferencial_a import  evolucion_diferencial_a
+from algoritmos.evolucion_diferencial_b import  evolucion_diferencial_b
 # Uncomment and import other necessary modules
 
 def main():
@@ -49,10 +50,10 @@ def main():
                             mejor_solucion , mejor_distancia = algoritmo_genetico_moc(IE);
                             pass
                         elif algoritmo == "EDA":
-                            mejor_solucion , mejor_distancia = evolucion_diferencial(IE);
+                            mejor_solucion , mejor_distancia = evolucion_diferencial_a(IE);
                             pass
                         elif algoritmo == "EDB":
-                            # ... (adapted for EDB specifics)
+                            mejor_solucion , mejor_distancia = evolucion_diferencial_b(IE);
                             pass
                         # Add additional algorithm cases as needed
 

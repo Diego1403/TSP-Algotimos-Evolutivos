@@ -1,17 +1,66 @@
-
 # Función principal que ejecuta el algoritmo genético
 import time
+
+import numpy as np
 from algoritmos.cruzamiento.cruzamiento_moc import cruzamiento_MOC
 from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
-from algoritmos.util import calcular_fitness, inicializar_poblacion
+
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
 from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_perdedores
+def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distancias):
+    poblacion = []
 
+    #GENERACION ALEATORIA
+    for _ in range(round(num_individuos*0.8)):
+        individuo = list(range(num_ciudades))
+        aleatorio.shuffle(individuo)
+        poblacion.append(individuo)
+
+    #GENERACION CON GREEEDY ALEATORIZADO
+    for _ in range(round(num_individuos*0.2)):
+        poblacion=[]
+        for _ in range(num_individuos):
+            individuo = []
+            pool = list(range(num_ciudades))
+            punto_de_partida = aleatorio.choice(pool)
+            individuo.append(punto_de_partida)
+            pool.remove(punto_de_partida)
+
+            while pool:
+                if len(pool) > 5:
+                    muestra = aleatorio.sample(pool, 5)
+                else:
+                    muestra = pool
+
+                mejor_coste = float('inf')
+                mejor_ciudad = None
+
+                for ciudad in muestra:
+                    coste_actual = matriz_distancias[individuo[-1]][ciudad]
+                    if coste_actual < mejor_coste:
+                        mejor_coste = coste_actual
+                        mejor_ciudad = ciudad
+
+                if mejor_ciudad is not None:
+                    individuo.append(mejor_ciudad)
+                    pool.remove(mejor_ciudad)
+                else:
+                    # Mecanismo de escape: elegir una ciudad aleatoria de las restantes
+                    ciudad_aleatoria = aleatorio.choice(pool)
+                    individuo.append(ciudad_aleatoria)
+                    pool.remove(ciudad_aleatoria)
+
+            poblacion.append(individuo)
+    return poblacion
+
+def calcular_fitness(individuo, matriz_distancias):
+    return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
 def algoritmo_genetico_moc(IE):
-    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
+    matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest, IE.kWorst
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias))
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random,matriz_distancias)
     best_solution = None
     best_distance = float('inf')
     done = False
@@ -34,7 +83,7 @@ def algoritmo_genetico_moc(IE):
                 nueva_poblacion.append(e[0])
         #-----------SELECCIONAR---------------
         
-        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest)
+        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest,IE.aleatorio)
         #-----------RECOMBINAR---------------
  
         if random.random() < IE.prob_cruce:
@@ -43,8 +92,8 @@ def algoritmo_genetico_moc(IE):
             hijo1, hijo2 = padre1,padre2
     #-----------MUTAR---------------
         if random.random() < IE.prob_mutacion:        
-            hijo1 = mutar_2opt(hijo1)
-            hijo2 = mutar_2opt(hijo2)
+            hijo1 = mutar_2opt(IE.aleatorio,hijo1)
+            hijo2 = mutar_2opt(IE.aleatorio,hijo2)
         nueva_poblacion.extend([hijo1, hijo2])
         
         #-----------EVALUAR---------------   
@@ -52,12 +101,16 @@ def algoritmo_genetico_moc(IE):
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
+            print(best_distance)
         
 
         #-----------REMPLAZAR---------------
-        for p in poblacion:
-            if p[0] not in nueva_poblacion  :  
-                nueva_poblacion.append(p[0])
+        #utilizar Kworst para reemplazar el peor en caso de que el mejor de los élites no estén
+        for e in elites:
+            if e[0] not in nueva_poblacion:
+                peor = seleccion_torneo_perdedores(nueva_poblacion, kWorst, IE.aleatorio)
+                poblacion = nueva_poblacion_sorted.remove(peor)
+
         # Calculamos la aptitud de cada individuo de la población
         fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in nueva_poblacion]
         # Ordenamos la población basada en la mejor (mejor a peor)
@@ -68,7 +121,7 @@ def algoritmo_genetico_moc(IE):
         
         ciclo = ciclo +1
         if ciclo % 100 == 0:
-            print(best_distance)
+            IE.log(str(current_best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time > 30 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos

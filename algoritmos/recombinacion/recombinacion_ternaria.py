@@ -4,8 +4,7 @@ from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 from algoritmos.util.calcular_fitness import calcular_fitness
 
 def recombinacion_ternaria(padre, obj, a1, a2,md):
-    a1 = a1[0]
-    a2 = a2[0]
+
     nuevo_padre=padre.copy()
     pos1 = random.randint(0, len(padre) - 2) #nos aseguramos que la posicion no es el ultimo elemento
     pos2 = pos1+1

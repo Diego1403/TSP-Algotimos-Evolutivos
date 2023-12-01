@@ -8,45 +8,45 @@ from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
 from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
-def inicializar_poblacion(num_individuos, num_ciudades,aleatiorio):
+from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_perdedores
+
+def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distancias):
     poblacion = []
-    for _ in range(num_individuos):
+
+    #GENERACION ALEATORIA
+    for _ in range(round(num_individuos*0.8)):
         individuo = list(range(num_ciudades))
-        aleatiorio.shuffle(individuo)
+        aleatorio.shuffle(individuo)
+        poblacion.append(individuo)
+
+    #GENERACION CON GREEEDY ALEATORIZADO
+    for _ in range(round(num_individuos*0.2)):
+        individuo = list(range(num_ciudades))
+        pool = list(range(num_ciudades))
+        for i in range(len(individuo)):
+            if(len(pool)>5):
+                sample = aleatorio.sample(pool,5)
+            else:
+                sample = pool
+                aleatorio.shuffle(sample)
+            mejor_coste = 999999
+            mejor = -1
+            for s in sample:
+                if(matriz_distancias[i][s]<mejor_coste):
+                    mejor_coste = matriz_distancias[i][s]
+                    mejor = s        
+            individuo[i] = mejor
+            pool.remove(mejor)
         poblacion.append(individuo)
     return poblacion
+
 def calcular_fitness(individuo, matriz_distancias):
-    return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
-
-def grasp(gen_aleatorio,matriz_distancias,tam_problema,tam_lista):
-
-    lista_mejores = np.zeros(tam_problema)
-    completo = False
-
-    while not completo:
-
-        m = gen_aleatorio.randrange(0,tam_problema)
-        while lista_mejores[m] != 0:
-            m = gen_aleatorio.randrange(0,tam_problema)
-
-        mejores = sorted(matriz_distancias[m]) #lista de las mejores
-        mejor = mejores[gen_aleatorio.randrange(0,4)]
-        lista_mejores[m] = matriz_distancias[m].tolist().index(mejor)
-
-        completo = True
-
-        for l in lista_mejores:
-            if  l == 0:
-                completo = False
-
-    lista_sol = lista_mejores[:tam_lista]
-
-    return lista_sol
+    return sum(matriz_distancias[individuo[j]][individuo[j - 1]] for j in range(len(individuo)))
 
 def algoritmo_genetico_ox2(IE):
-    matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, 50, IE.E, IE.kBest
+    matriz_distancias, tam_poblacion, n_elites, kBest, kWorst = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest, IE.kWorst
     random = IE.aleatorio
-    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random)
+    population = inicializar_poblacion(tam_poblacion, len(matriz_distancias),random,matriz_distancias)
     #poblacion debe inicializarse con greedy aleatorizado???
     best_solution = None
     best_distance = float('inf')
@@ -88,12 +88,17 @@ def algoritmo_genetico_ox2(IE):
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
+            print(best_distance)
         
 
         #-----------REMPLAZAR---------------
-        for p in poblacion:
-            if p[0] not in nueva_poblacion  :  
-                nueva_poblacion.append(p[0])
+        
+        #utilizar Kworst para reemplazar el peor en caso de que el mejor de los élites no estén
+        for e in elites:
+            if e[0] not in nueva_poblacion:
+                peor = seleccion_torneo_perdedores(nueva_poblacion, kWorst, IE.aleatorio)
+                poblacion = nueva_poblacion_sorted.remove(peor)
+
         # Calculamos la aptitud de cada individuo de la población
         fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in nueva_poblacion]
         # Ordenamos la población basada en la mejor (mejor a peor)
@@ -101,12 +106,13 @@ def algoritmo_genetico_ox2(IE):
         
         nueva_poblacion_sorted = sorted(fitness_population, key=lambda x: x[1])         
         poblacion = nueva_poblacion_sorted[:tam_poblacion]  # Nos aseguramos de no exceder el tamaño de población
+
+        # Nos aseguramos de no exceder el tamaño de población
         
         ciclo = ciclo +1
         if ciclo % 100 == 0:
-            print(best_distance)
-            IE.log(str(current_best_distance)+" ciclo ="+str(ciclo))
+            IE.log(str(current_best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
-        if time.time() - start_time > 30 or ciclo>= IE.evaluaciones:
+        if time.time() - start_time > 60 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
     return best_solution,best_distance
