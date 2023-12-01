@@ -5,7 +5,7 @@ from algoritmos.cruzamiento.cruzamiento_moc import cruzamiento_MOC
 from algoritmos.cruzamiento.cruzamiento_ox2 import cruzamiento_OX2
 from algoritmos.recombinacion.recombinacion_ternaria import recombinacion_ternaria
 from algoritmos.mutacion.mutar_2opt import mutar_2opt
-from algoritmos.seleccion.seleccion_torneo_binario import seleccion_torneo_binario
+
 
 def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distancias):
     poblacion = []
@@ -40,6 +40,11 @@ def inicializar_poblacion(num_individuos, num_ciudades,aleatorio, matriz_distanc
 def calcular_fitness(individuo, matriz_distancias):
     return sum(matriz_distancias[individuo[i]][individuo[i - 1]] for i in range(len(individuo)))
 
+def seleccion_torneo_binario(poblacion,kbest,aleatiorio):
+    pool_selection = poblacion[:kbest]
+    padre1 = aleatiorio.sample(pool_selection, kbest)[0][0]
+    padre2 = aleatiorio.sample(pool_selection, kbest)[0][0]
+    return padre1, padre2
 
 def evolucion_diferencial_a(IE):
     matriz_distancias, tam_poblacion, n_elites, kBest = IE.matriz_distancias, IE.tam_poblacion, IE.E, IE.kBest
@@ -59,32 +64,40 @@ def evolucion_diferencial_a(IE):
        
     while not done:
 
-        nueva_poblacion = []
-        # Conservamos a los individuos élite
-        
-        #-----------SELECCIONAR---------------
+        for i in range(tam_poblacion):
 
-        aleatorio1 = random.sample(poblacion,1)[0]
-        aleatorio2 = random.sample(poblacion,1)[0]
-        while aleatorio1 == aleatorio2:
-            aleatorio2 = random.sample(poblacion,1)[0]
-        objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
+            padre1 = poblacion[i][0] #elegir padre1 de forma secuencial
+            #elegir otros dos padres de forma aleatoria
+            padre2 = random.sample(poblacion,1)[0]
+            padre3 = random.sample(poblacion,1)[0]
+                
+            #nodo objetivo con kbest 2
+            objetivo = seleccion_torneo_binario(poblacion,2,random)[0] 
+
+            #elegir otra vez si no son distintos
+            while not (padre1!=padre2!=padre3!=objetivo):
+                padre2 = random.sample(poblacion,1)[0]
+                padre3 = random.sample(poblacion,1)[0]
+                objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
+
+            #print("padre 1:",padre1)
+            #print("padre 2:",padre2)
+            #print("padre 3:",padre3)
+             #------- RECOMBINAR--------------
+            hijo = recombinacion_ternaria(padre1, objetivo, padre2, padre3,IE.matriz_distancias)
         
-        #------- RECOMBINAR--------------
-        hijo = recombinacion_ternaria(padre, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
+            #-----------EVALUAR---------------   
+            if (hijo[1]<best_distance):
+                best_distance = hijo[1]
+                best_solution= hijo[0] 
         
-        #-----------EVALUAR---------------   
-        if (hijo[1]<best_distance):
-            best_distance = hijo[1]
-            best_solution= hijo[0] 
-        
-        #-----------REMPLAZAR---------------
-        if(hijo[1]<padre[1]):
-            nueva_poblacion.append(hijo)
-            padre = hijo.copy() 
-            
-        else:
-            nueva_poblacion.append(padre)
+            #-----------REMPLAZAR---------------
+            if(hijo[1]<padre1[1]):
+                poblacion[i] = hijo
+
+        fitness_population = [(individuo, calcular_fitness(individuo, matriz_distancias)) for individuo in population]
+        # Ordenamos la población basada en la mejor (mejor a peor)
+        poblacion = sorted(fitness_population, key=lambda x: x[1])
 
         ciclo = ciclo +1
         if ciclo % 100 == 0:
