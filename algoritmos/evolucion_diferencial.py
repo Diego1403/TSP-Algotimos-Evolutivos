@@ -41,19 +41,9 @@ def evolucion_diferencial(IE):
         
         #-----------SELECCIONAR---------------
         
-        padre1, padre2 = seleccion_torneo_binario(poblacion,kBest,random)
+        padre1 = seleccion_torneo_binario(poblacion,kBest,random)[0]
         
-        posible_objetivo1 = []
-        
-        posible_objetivo2 = []
-        # Seleccionando dos cromosomas distintos diferentes del padre
-        while posible_objetivo1 != posible_objetivo2 and posible_objetivo1 != padre1 :
-            posible_objetivo1 = random.sample(poblacion,1)
-            posible_objetivo2 = random.sample(poblacion,1)
-   
         aleatorio1 = random.sample(poblacion,1)[0]
-
-        # Seleccionando otro cromosoma aleatorio diferente de los previamente seleccionados
         aleatorio2 = random.sample(poblacion,1)[0]
         while aleatorio1 == aleatorio2:
             aleatorio2 = random.sample(poblacion,1)[0]
