@@ -103,7 +103,7 @@ def algoritmo_genetico_moc(IE):
         
         ciclo = ciclo +1
         if ciclo % 100 == 0:
-            print(best_distance)
+            IE.log(str(current_best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
         if time.time() - start_time > 30 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos

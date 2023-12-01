@@ -72,7 +72,7 @@ def algoritmo_genetico_ox2(IE):
         
         padre1, padre2 = seleccion_torneo_binario(poblacion,kBest, IE.aleatorio)
         #-----------RECOMBINAR---------------
- 
+        
         if random.random() < IE.prob_cruce:
             hijo1, hijo2 = cruzamiento_OX2(padre1, padre2, IE.aleatorio)
         else:
@@ -110,8 +110,8 @@ def algoritmo_genetico_ox2(IE):
         
         ciclo = ciclo +1
         if ciclo % 100 == 0:
-            print(best_distance)
+            IE.log(str(current_best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
-        if time.time() - start_time > 30 or ciclo>= IE.evaluaciones:
+        if time.time() - start_time > 60 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
     return best_solution,best_distance
