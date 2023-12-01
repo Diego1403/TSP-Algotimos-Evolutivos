@@ -48,7 +48,7 @@ def evolucion_diferencial(IE):
         while aleatorio1 == aleatorio2:
             aleatorio2 = random.sample(poblacion,1)[0]
         objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
-
+        #------- RECOMBINAR--------------
         hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
         #-----------EVALUAR---------------   
         
