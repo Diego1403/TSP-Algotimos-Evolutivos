@@ -59,6 +59,8 @@ def evolucion_diferencial(IE):
         #-----------REMPLAZAR---------------
         if(hijo[1]<padre[1]):
             nueva_poblacion.append(hijo)
+            padre = hijo.copy() 
+            
         else:
             nueva_poblacion.append(padre)
 
