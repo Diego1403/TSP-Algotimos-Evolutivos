@@ -112,4 +112,3 @@ def evolucion_diferencial_b(IE):
             done = True  # Terminamos si la ejecución supera los 30 segundos
         
     return best_solution,best_distance
-
