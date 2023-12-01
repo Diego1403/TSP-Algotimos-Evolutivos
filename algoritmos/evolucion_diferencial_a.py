@@ -59,33 +59,32 @@ def evolucion_diferencial_a(IE):
        
     while not done:
 
-        for i in range(tam_poblacion):
-
-            padre1 = poblacion[i][0] #elegir padre1 de forma secuencial
-            #elegir otros dos padres de forma aleatoria
-            padre2 = random.sample(poblacion,1)[0]
-            padre3 = random.sample(poblacion,1)[0]
-                
-            #nodo objetivo con kbest 2
-            objetivo = seleccion_torneo_binario(poblacion,2,random)[0] 
-
-            #elegir otra vez si no son distintos
-            while not (padre1!=padre2!=padre3!=objetivo):
-                padre2 = random.sample(poblacion,1)[0]
-                padre3 = random.sample(poblacion,1)[0]
-                objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
-
-             #------- RECOMBINAR--------------
-            hijo = recombinacion_ternaria(padre1, objetivo, padre2, padre3,IE.matriz_distancias)
+        nueva_poblacion = []
+        # Conservamos a los individuos élite
         
-            #-----------EVALUAR---------------   
-            if (hijo[1]<best_distance):
-                best_distance = hijo[1]
-                best_solution= hijo[0] 
+        #-----------SELECCIONAR---------------
+
+        aleatorio1 = random.sample(poblacion,1)[0]
+        aleatorio2 = random.sample(poblacion,1)[0]
+        while aleatorio1 == aleatorio2:
+            aleatorio2 = random.sample(poblacion,1)[0]
+        objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
         
-            #-----------REMPLAZAR---------------
-            if(hijo[1]<padre1[1]):
-                poblacion[i] = hijo
+        #------- RECOMBINAR--------------
+        hijo = recombinacion_ternaria(padre, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
+        
+        #-----------EVALUAR---------------   
+        if (hijo[1]<best_distance):
+            best_distance = hijo[1]
+            best_solution= hijo[0] 
+        
+        #-----------REMPLAZAR---------------
+        if(hijo[1]<padre[1]):
+            nueva_poblacion.append(hijo)
+            padre = hijo.copy() 
+            
+        else:
+            nueva_poblacion.append(padre)
 
         ciclo = ciclo +1
         if ciclo % 100 == 0:
