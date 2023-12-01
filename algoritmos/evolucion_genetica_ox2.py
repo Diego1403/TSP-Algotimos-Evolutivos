@@ -88,7 +88,7 @@ def algoritmo_genetico_ox2(IE):
         if current_best_distance < best_distance:
             best_solution = current_best_solution
             best_distance = current_best_distance
-            print(best_distance)
+            
         
 
         #-----------REMPLAZAR---------------
