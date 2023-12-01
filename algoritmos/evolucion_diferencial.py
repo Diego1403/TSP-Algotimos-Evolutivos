@@ -50,21 +50,21 @@ def evolucion_diferencial(IE):
         while posible_objetivo1 != posible_objetivo2 and posible_objetivo1 != padre1 :
             posible_objetivo1 = random.sample(poblacion,1)
             posible_objetivo2 = random.sample(poblacion,1)
-            
-            
-        aleatorio1 = random.sample(poblacion,1)
+   
+        aleatorio1 = random.sample(poblacion,1)[0]
 
         # Seleccionando otro cromosoma aleatorio diferente de los previamente seleccionados
-        aleatorio2 = random.sample(poblacion,1)
+        aleatorio2 = random.sample(poblacion,1)[0]
         while aleatorio1 == aleatorio2:
-            aleatorio2 = random.sample(poblacion,1)
-        objetivo = seleccion_torneo_binario(poblacion,kBest)[0]
+            aleatorio2 = random.sample(poblacion,1)[0]
+        objetivo = seleccion_torneo_binario(poblacion,kBest,random)[0]
 
-        hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2)
-                    
+        hijo = recombinacion_ternaria(padre1, objetivo, aleatorio1, aleatorio2,IE.matriz_distancias)
         #-----------EVALUAR---------------   
         
-        
+        if (hijo[1]<best_distance):
+            best_distance = hijo[1]
+            best_solution= hijo[0] 
         
         #-----------REMPLAZAR---------------
         if(hijo[1]<padre1[1]):
