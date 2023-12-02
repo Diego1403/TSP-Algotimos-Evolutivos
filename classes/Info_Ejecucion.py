@@ -2,19 +2,53 @@ import configparser
 import math
 import numpy as np
 import random
+import logging 
 
-from controladores.C_Archivos import archivo_save_output
+from controladores.C_Archivos import archivo_save_output, read_tsp_file
 
 class Info_Ejecucion:
-    def __init__(self,nombre_lugar,tipo , comentario,dimension,ewt) :
-        self.nombre_lugar = nombre_lugar
-        self.tipo = tipo
-        self.comentario = comentario
-        self.dimension = dimension
-        self.ewt = ewt
+    def __init__(self,prob_mutacion,prob_cruce,semilla,evaluaciones,kWorst):
+        self.kWorst = kWorst
+        self.evaluaciones = evaluaciones
+        self.semilla = semilla
+        self.aleatorio = random.Random(self.semilla)
+        self.prob_cruce = prob_cruce
+        self.prob_mutacion = prob_mutacion
+
+        
+    
+    def update_data(self,file_path,data) :
+        self.algoritmo= data["algoritmo"]
+        self.dataset= data["dataset"]
+        self.tam_poblacion= data["tam_poblacion"]
+        self.E = data["E"]
+        self.kBest= data["kBest"]
+        self.tipo_diferencial = data["tipo_diferencial"]
+        logging.basicConfig(filename=self.algoritmo+self.dataset+".log", 
+        format='%(asctime)s %(message)s', 
+		filemode='w') 
+        self.logger=logging.getLogger() 
+        self.logger.setLevel(logging.DEBUG) 
+    
+    def log(self,msg):
+        self.logger.info(msg) 
+
+    def update_dataset(self,file_path):
+        tsp_data = read_tsp_file("input_data/"+file_path) 
+        
+        self.nombre_lugar = tsp_data.get('NAME')
+        self.tipo = tsp_data.get('TYPE')
+        self.comentario = tsp_data.get('COMMENT')
+        self.dimension = tsp_data.get('DIMENSION')
+        self.ewt = tsp_data.get('EDGE_WEIGHT_TYPE')
         self.nodos = []
         self.matriz_distancias = []
-    
+        self.file_path = file_path
+        # Cargar nodos
+        for nodo in tsp_data.get('NODE_COORD_SECTION', []):
+            self.add_nodo(nodo)
+            
+        self.calcular_matriz_distancias()
     def add_nodo(self,nodo):
         self.nodos.append(nodo)
     
@@ -37,31 +71,4 @@ class Info_Ejecucion:
         for row in self.matriz_distancias:
             archivo_save_output("test.csv", row)
     
-    def load_configuration(self,file_path):
-        # Initialize the parser
-        config = configparser.ConfigParser()
-
-        # Read the configuration file
-        config.read(file_path)
-
-
-        # Read values from the 'default' section
-        try:
-
-            self.algoritmos= config.get('default', 'algoritmos')
-            self.dataset= config.get('default', 'dataset')
-            self.tam_poblacion= config.getint('default', 'M')
-            self.E = config.getint('default', 'E')
-            self.kBest= config.getint('default', 'kBest')
-            self.kWorst = config.getint('default', 'kWorst')
-            self.evaluaciones = config.getint('default', 'evaluaciones')
-            self.semilla = config.getint('default', 'semilla')
-            self.aleatorio = random.Random(self.semilla)
-            self.prob_cruce = config.getfloat('default', 'prob_cruce')
-            self.prob_mutacion = config.getfloat('default', 'prob_mutacion')
-
-            print("config.ini loaded correctly")
-        except (configparser.NoOptionError, ValueError) as e:
-            print(f"An error occurred: {e}")
-            
-            return None
+   
