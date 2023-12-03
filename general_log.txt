@@ -1,0 +1,66 @@
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:22019.04892474584
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:21634.12891264241
+Tiempo total:60.026878356933594
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:21693.877357087422
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:21559.97653030709
+Tiempo total:60.02909183502197
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:346623.74893356266
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:327597.6244172686
+Tiempo total:60.00767517089844
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:332910.03864647244
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:323162.5418441822
+Tiempo total:60.03421330451965
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:63043689.001713745
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:62881296.73431113
+Tiempo total:66.50183868408203
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:62713771.450167425
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:62576452.37172773
+Tiempo total:74.12650632858276

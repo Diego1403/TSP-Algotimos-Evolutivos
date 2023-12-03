@@ -1,0 +1,2098 @@
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:22034.446386257652
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:22211.711965697457
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:22725.817009354243
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:22376.893830145338
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:21504.862058752733
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:20375.800275343092
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:21050.054444820427
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:21132.752408419743
+Tiempo total:58.012856245040894
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:21431.99846832573
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:21567.530532183966
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:22308.658917891717
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:20887.357092676055
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:20658.871577275848
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:20768.16822561084
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:21584.079142906445
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:20087.145729025062
+Tiempo total:61.69833016395569
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:368243.12837352057
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:340561.69319915446
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:345971.30402760615
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:341351.34381172113
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:320950.5072234305
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:318733.35911406844
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:341957.8313666076
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:337717.9982917072
+Tiempo total:67.89010572433472
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:333205.89973747457
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:337829.03894596186
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:353012.1710045779
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:334889.5889973082
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:327438.25069617806
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:321860.7592305208
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:335116.5401187236
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:324053.6952163181
+Tiempo total:71.81171607971191
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:62965883.32741578
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:62632962.44344052
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:62826005.40852134
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:62975008.21728922
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:62686876.73124298
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:62841794.91861541
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:62646755.63698917
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:62553906.61814163
+Tiempo total:1321.8213202953339
+Tiempo total:264.74598813056946
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:62951845.39922856
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:62753850.096666
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:62996599.35455387
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:62693751.392592035
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:2
+Mejor Distancia:62735792.55499531
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:1
+kBest:3
+Mejor Distancia:62676612.0184031
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:2
+Mejor Distancia:62698751.162506655
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:12345678
+Elites:2
+kBest:3
+Mejor Distancia:62766137.943831846
+Tiempo total:4878.167353153229
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:21062.40812184035
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:21806.671919317614
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:22446.817468880035
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:20844.566081487497
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:21533.509626065
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:21181.518153393405
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:21477.21632145379
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:21714.670351128814
+Tiempo total:56.91400337219238
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:21474.073074372012
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:21546.48530091084
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:21581.077044135127
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:22340.17546015591
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:20885.703366210742
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:21269.864290108177
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:19636.722225002708
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:20990.672063538128
+Tiempo total:61.4514319896698
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:338045.681306847
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:352801.14632209827
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:339893.632078182
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:348708.92573510954
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:329661.2389941157
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:335276.4018201023
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:343414.9670412799
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:333607.23382444633
+Tiempo total:67.1568956375122
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:348659.5098832865
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:317598.5329344225
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:351344.03587157204
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:340961.22977291414
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:332252.9272713844
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:305676.6292664326
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:326626.0389614276
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:321533.4521167597
+Tiempo total:71.06099939346313
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:62897472.16044102
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:62924239.55348375
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:62850017.84602963
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:62756530.92493307
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:62603686.25124835
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:62506688.102148585
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:62693212.44885321
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:62764730.03665255
+Tiempo total:1325.553341627121
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:62593926.37162355
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:62632673.97765897
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:62534671.18433434
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:62643069.97197096
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:2
+Mejor Distancia:62557912.35344808
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:1
+kBest:3
+Mejor Distancia:62606696.00664305
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:2
+Mejor Distancia:62441470.23982338
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:77376480
+Elites:2
+kBest:3
+Mejor Distancia:62640871.02126928
+Tiempo total:4867.550341129303
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:22161.068544191825
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:20445.178184230237
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:22016.051630758586
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:21710.643765209803
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:21413.59730084222
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:20441.50951884557
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:21243.53271945752
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:20987.487797993595
+Tiempo total:57.55980825424194
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:21132.15262993576
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:21774.711968815984
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:20936.579522452463
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:20451.740885215564
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:21028.056066301975
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:20784.028501476674
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:19395.785851588327
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:20336.360784787605
+Tiempo total:61.08503484725952
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:349545.1920391673
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:333216.17594836
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:326588.72971628245
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:327583.5149131497
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:337026.0039806609
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:331498.8632747857
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:346159.00388033775
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:347692.06080201425
+Tiempo total:66.92199993133545
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:345783.39605235116
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:356453.75418618665
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:332546.39964865276
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:352647.5017503929
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:343531.591506201
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:319103.6956292602
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:327170.9152137817
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:318108.1234308672
+Tiempo total:70.39432287216187
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:62789319.04623832
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:62754879.90994405
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:62714970.341954485
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:62768665.508414805
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:62516395.13298754
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:62673354.550110124
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:62769187.41768339
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:62661093.68175313
+Tiempo total:1323.3642783164978
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:62894857.01958838
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:62672612.99944281
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:62735820.45060431
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:62604967.79946875
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:2
+Mejor Distancia:62742331.080516875
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:1
+kBest:3
+Mejor Distancia:62385281.88704397
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:2
+Mejor Distancia:62479861.72774905
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:49125723
+Elites:2
+kBest:3
+Mejor Distancia:62524696.438630946
+Tiempo total:4883.991284608841
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:20238.87269103614
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:21750.245013344378
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:20059.592733869842
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:21663.776169874363
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:21378.14083123666
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:21316.449538574776
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:20667.439601081842
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:21521.41998270178
+Tiempo total:57.026719093322754
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:21468.062277332396
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:19386.272562571747
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:22427.989999129913
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:21292.73817792955
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:20979.727750989678
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:20674.28455565595
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:20971.115687639696
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:20571.324260010144
+Tiempo total:62.75275444984436
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:360338.4665974141
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:351403.9362468315
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:327777.31421491044
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:346996.09583085595
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:334010.4453817252
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:331571.22732478107
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:339394.43281635956
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:313086.6409066199
+Tiempo total:66.95076656341553
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:334002.5021145528
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:343584.8247058822
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:351257.8985280888
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:350071.5753929003
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:324960.8934586089
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:341175.5663090633
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:320556.8782826478
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:338971.2327748314
+Tiempo total:70.49807739257812
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:62729895.07918067
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:62987848.29586712
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:62956294.57278727
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:62964615.30398152
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:62710221.40366807
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:62659673.77684524
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:62502108.43979426
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:62825508.79519533
+Tiempo total:1320.4030480384827
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:62376882.03549846
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:62447478.98915341
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:62945008.41113459
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:62776508.738947995
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:2
+Mejor Distancia:62474320.30452387
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:1
+kBest:3
+Mejor Distancia:62625501.15530692
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:2
+Mejor Distancia:62606603.57696616
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:81323910
+Elites:2
+kBest:3
+Mejor Distancia:62542652.38762891
+Tiempo total:6566.60088634491
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:22551.04746258569
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:22125.458127876533
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:21165.239486679075
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:22752.154996088615
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:21630.381897397026
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:21694.27641764086
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:21391.638142477983
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:21010.609729164808
+
+Tiempo total:69.73759174346924
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:21419.277431336322
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:21164.242402112763
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:21511.334815074915
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:21929.598685225665
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:20893.437184744045
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:19806.936465031653
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:20656.35974640854
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:21351.817050404075
+Tiempo total:61.88938546180725
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:350206.5003392353
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:366831.31938310794
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:357431.4320602278
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:336364.26582506916
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:329290.31389050436
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:315737.6484336301
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:336262.7222411063
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:336249.5264610709
+Tiempo total:76.89223194122314
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:330973.4473845596
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:329762.44833575835
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:348177.0672208123
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:328048.5332086463
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:337280.57553586987
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:333232.2430456834
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:340109.1295014415
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:330090.2871210843
+Tiempo total:82.50607180595398
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:62856341.54102633
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:62728289.96214288
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:62888118.97826889
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:63075879.0385067
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:62675279.15811687
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:62733528.84809288
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:62809490.107194714
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:62612473.57143985
+Tiempo total:1327.2436263561249
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:62843933.107969776
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:62726138.029971205
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:62530212.014718734
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenOX2
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:62282772.36071171
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:2
+Mejor Distancia:62531526.504652746
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:1
+kBest:3
+Mejor Distancia:62391935.855946936
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:2
+Mejor Distancia:62516973.58359894
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:GenMOC
+Semilla:198742069
+Elites:2
+kBest:3
+Mejor Distancia:62453404.57397666
+Tiempo total:4890.72668838501
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:21776.347932019384
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:21020.785348629775
+Tiempo total:60.00352096557617
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:20880.04986954444
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:21564.684903373647
+Tiempo total:60.02955675125122
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:352472.59426321136
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:339802.2766053785
+Tiempo total:60.02818989753723
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:333948.4295494897
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:332695.15363511886
+Tiempo total:60.01863956451416
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:62817314.86053099
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:62986166.154214986
+Tiempo total:66.82453465461731
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:12345678
+Mejor Distancia:62967605.61850944
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:12345678
+Mejor Distancia:62565062.93894962
+Tiempo total:73.69800567626953
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:20652.205657621947
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:20668.897380761886
+Tiempo total:60.00613856315613
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:21787.460461012022
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:22299.198462216416
+Tiempo total:60.029959201812744
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:325381.9790922227
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:324254.85825291945
+
+Tiempo total:60.006019592285156
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:335120.9974629786
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:339326.4305673951
+Tiempo total:60.033103704452515
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:63028853.96630861
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:62912494.702352814
+Tiempo total:66.88190841674805
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:77376480
+Mejor Distancia:62446563.773352824
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:77376480
+Mejor Distancia:62801064.27390325
+Tiempo total:74.0750482082367
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:21457.285014721947
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:21150.64189427789
+Tiempo total:60.013139724731445
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:21978.860104325857
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:21178.47873470615
+Tiempo total:60.03751826286316
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:334411.85409789963
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:338586.51877426746
+Tiempo total:60.0202898979187
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:332043.2753262086
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:334088.74226565275
+Tiempo total:60.02119255065918
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:63112767.00279791
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:62820379.61001352
+Tiempo total:66.69488668441772
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:49125723
+Mejor Distancia:63065961.50261266
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:49125723
+Mejor Distancia:62974386.1736044
+Tiempo total:73.99801778793335
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:20212.25766481785
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:20812.93004932351
+Tiempo total:60.01498532295227
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:20906.98680260721
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:21301.67882841163
+Tiempo total:60.02794408798218
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:341190.88008765515
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:355420.855777183
+Tiempo total:60.0002965927124
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:336631.07097516925
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:340157.70383857086
+Tiempo total:60.02410006523132
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:62820786.811462395
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:62903363.39976176
+Tiempo total:66.38659882545471
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:81323910
+Mejor Distancia:62791696.675340176
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:81323910
+Mejor Distancia:62872191.16686673
+Tiempo total:74.05943322181702
+
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:22019.04892474584
+Archivo:ch130.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:21634.12891264241
+Tiempo total:60.026878356933594
+
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:21693.877357087422
+Archivo:ch130.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:21559.97653030709
+Tiempo total:60.02909183502197
+
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:346623.74893356266
+Archivo:pr144.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:327597.6244172686
+Tiempo total:60.00767517089844
+
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:332910.03864647244
+Archivo:pr144.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:323162.5418441822
+Tiempo total:60.03421330451965
+
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:63043689.001713745
+Archivo:d15112.tsp
+Poblacion:50
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:62881296.73431113
+Tiempo total:66.50183868408203
+
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDA
+Semilla:198742069
+Mejor Distancia:62713771.450167425
+Archivo:d15112.tsp
+Poblacion:100
+Algoritmo:EDB
+Semilla:198742069
+Mejor Distancia:62576452.37172773
+Tiempo total:74.12650632858276
