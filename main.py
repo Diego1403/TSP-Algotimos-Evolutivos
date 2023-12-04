@@ -5,6 +5,7 @@ from algoritmos.evolucion_genetica_ox2 import algoritmo_genetico_ox2
 
 from algoritmos.evolucion_diferencial_a import evolucion_diferencial_a
 from algoritmos.evolucion_diferencial_b import evolucion_diferencial_b
+from algoritmos.colonia_hormigas import colonia_hormigas
 # Uncomment and import other necessary modules
 
 def main():
@@ -55,6 +56,8 @@ def main():
                             pass
                         elif algoritmo == "EDB":
                             mejor_solucion , mejor_distancia = evolucion_diferencial_b(IE);
+                        elif algoritmo =="Hormigas":
+                            mejor_solucion,mejor_distancia= colonia_hormigas(IE,alfa=0.2,beta=0.1)
                             pass
                         # Add additional algorithm cases as needed
 
