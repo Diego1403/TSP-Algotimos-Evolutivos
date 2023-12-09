@@ -9,7 +9,7 @@ from algoritmos.evolucion_diferencial_b import evolucion_diferencial_b
 import time
 import winsound
 
-from colonia_hormigas import colonia_hormigas
+from algoritmos.colonia_hormigas import colonia_hormigas
 frec = 1000 
 dur = 1000 
 
