@@ -96,7 +96,7 @@ def evolucion_diferencial_b(IE):
             if (hijo[1]<best_distance):
                 best_distance = hijo[1]
                 best_solution= hijo[0] 
-                print(best_distance)
+                #print(best_distance)
         
             #-----------REMPLAZAR---------------
             if(hijo[1]<padre1[1]):
@@ -111,7 +111,7 @@ def evolucion_diferencial_b(IE):
         if ciclo % 100 == 0:
             IE.log(str(best_distance)+" ciclo ="+str(ciclo)+" tiempo="+str(time.time()-start_time))
         # Condición de terminación basada en el tiempo de ejecución
-        if time.time() - start_time    > 30 or ciclo>= IE.evaluaciones:
+        if time.time() - start_time    > 60 or ciclo>= IE.evaluaciones:
             done = True  # Terminamos si la ejecución supera los 30 segundos
         
     return best_solution,best_distance
