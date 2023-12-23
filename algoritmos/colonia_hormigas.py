@@ -15,21 +15,24 @@ def calcular_fitness(ruta, matriz_distancias):
     return distancia_total
 
 
-def regla_transicion(ciudad_actual, mh, mf, alfa, beta, lista_ciudades_no_visitadas):
+def regla_transicion(ciudad_actual, mh, mf, alfa, beta, lista_ciudades_no_visitadas,lanzar_aleatorio):
     probabilidades = []
     feromonas = mf[ciudad_actual, lista_ciudades_no_visitadas]
     heuristicas = mh[ciudad_actual, lista_ciudades_no_visitadas]
     denominador = np.sum(np.power(feromonas, alfa) * np.power(heuristicas, beta))
-
+    
     for j in lista_ciudades_no_visitadas:
         numerador = np.power(mf[ciudad_actual, j], alfa) * np.power(mh[ciudad_actual, j], beta)
         probabilidad = numerador / denominador
         probabilidades.append(probabilidad)
+    if lanzar_aleatorio :
+        return random.choices(lista_ciudades_no_visitadas, weights=probabilidades, k=1)[0]
+    else :
+        max_index = np.argmax(probabilidades)
+        return lista_ciudades_no_visitadas[max_index]
 
-    return random.choices(lista_ciudades_no_visitadas, weights=probabilidades, k=1)[0]
+    
 
-
-#actualizar feromonas
 def demonio(poblacion, matriz_feromonas, matriz_distancias, mejor_hormiga, tasa_evaporacion_global=0.1, tasa_evaporacion_local=0.1):
     # Depósito de feromonas global
     for hormiga in poblacion:
@@ -38,8 +41,9 @@ def demonio(poblacion, matriz_feromonas, matriz_distancias, mejor_hormiga, tasa_
             matriz_feromonas[hormiga[i]][hormiga[i + 1]] += deposito_global
         matriz_feromonas[hormiga[-1]][hormiga[0]] += deposito_global
 
-        # Depósito local de feromonas
-        deposito_local = 1 / calcular_fitness(mejor_hormiga, matriz_distancias)
+    # Depósito local de feromonas
+    deposito_local = 1 / calcular_fitness(mejor_hormiga, matriz_distancias)
+    for hormiga in poblacion:
         for i in range(len(hormiga) - 1):
             matriz_feromonas[hormiga[i]][hormiga[i + 1]] += deposito_local
         matriz_feromonas[hormiga[-1]][hormiga[0]] += deposito_local
@@ -49,8 +53,8 @@ def demonio(poblacion, matriz_feromonas, matriz_distancias, mejor_hormiga, tasa_
 
     # Evaporación de feromonas local
     matriz_feromonas += (1 - tasa_evaporacion_local) * np.where(matriz_distancias != 0, 1 / matriz_distancias, 0)
-
-
+    
+    
 def greedy(matriz_distancias):
     numero_ciudades = len(matriz_distancias)
     ruta = [0]  # Start with the first city as the initial city
@@ -62,7 +66,6 @@ def greedy(matriz_distancias):
         distancias_disponibles = [(ciudad, matriz_distancias[ciudad_actual][ciudad]) for ciudad in ciudades_no_visitadas]
         distancias_disponibles.sort(key=lambda x: x[1])
         siguiente_ciudad = distancias_disponibles[0][0]
-
         ruta.append(siguiente_ciudad)
         ciudades_no_visitadas.remove(siguiente_ciudad)
         
@@ -78,6 +81,7 @@ def inicializar_hormigas(tam_poblacion,n_cuidades,random):
         poblacion.append(ind)
     return poblacion
 
+    
 def colonia_hormigas(IE,  alfa=1, beta=2):
     
     random = IE.aleatorio
@@ -91,11 +95,6 @@ def colonia_hormigas(IE,  alfa=1, beta=2):
     matriz_feromonas = np.full((tam_matriz_distancias, tam_matriz_distancias), fInicial)
     matriz_heuristica = np.where(matriz_distancias != 0, 1 / matriz_distancias, 0)
     # estamos minimizando distancias , pero maximizando heuristica 
-    
-
-
-    
-
     mejor_solucion_global = None
     mejor_distancia_global = float('inf')
     
@@ -105,19 +104,21 @@ def colonia_hormigas(IE,  alfa=1, beta=2):
     while not done:
         poblacion = inicializar_hormigas(tam_poblacion, len(matriz_distancias),random)
         print("poblacion inicialzada correctamente:")
-        print("Matriz Feromonas:")
-        np.set_printoptions(precision=1)
-        pprint.pprint(matriz_feromonas)
-
+        #print("Matriz Feromonas:")
+        #np.set_printoptions(precision=1)
+        #pprint.pprint(matriz_feromonas)
+        
+            
         for hormiga in poblacion:
+            
             ciudades_no_visitadas = set(range(len(matriz_distancias))) - set(hormiga)
             while ciudades_no_visitadas:
                 ciudad_actual = hormiga[-1]
-                if random.random() < 0.95:
-                    siguiente_ciudad = regla_transicion(ciudad_actual, matriz_heuristica, matriz_feromonas, alfa, beta, list(ciudades_no_visitadas))
-                    ciudades_no_visitadas.remove(siguiente_ciudad)
+                if random.random() > 0.95:
+                    siguiente_ciudad = regla_transicion(ciudad_actual, matriz_heuristica, matriz_feromonas, alfa, beta, list(ciudades_no_visitadas),True)
                 else:
-                    siguiente_ciudad = ciudades_no_visitadas.pop()
+                    siguiente_ciudad = regla_transicion(ciudad_actual, matriz_heuristica, matriz_feromonas, alfa, beta, list(ciudades_no_visitadas),False)
+                ciudades_no_visitadas.remove(siguiente_ciudad)
                 hormiga.append(siguiente_ciudad)
                 
 
@@ -129,7 +130,6 @@ def colonia_hormigas(IE,  alfa=1, beta=2):
                 mejor_distancia = distancia
                 mejor_hormiga = hormiga
         
-
         if mejor_distancia < mejor_distancia_global:
             mejor_distancia_global = mejor_distancia
             mejor_solucion_global = mejor_hormiga
@@ -141,7 +141,8 @@ def colonia_hormigas(IE,  alfa=1, beta=2):
         ciclo = ciclo +1
         print(mejor_distancia)
         # Condición de terminación basada en el tiempo de ejecución
-        if time.time() - start_time > 600 or ciclo>= 10000:
-            done = True 
+        print(time.time() - start_time)
+        if (time.time() - start_time > 60) or (ciclo>= 10000):
+            done=True
         
     return mejor_solucion_global, mejor_distancia_global
